@@ -12,13 +12,16 @@ def index():
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     form = RegisterForm(request.form)
+    username = form.username.data
+    password = form.password.data
     if request.method == 'POST':
-        username = form.username.data
-        password = form.password.data
-        new_user = User(username=username,password=password)
-        db.session.add(new_user)
-        db.session.commit()
-        return "successful"
+        if form.validate_on_submit() and User.query.filter(User.username == username).first() is None:
+            new_user = User(username=username,password=password)
+            db.session.add(new_user)
+            db.session.commit()
+            return "successful"
+        else:
+            return "fail"
     return render_template('register.html', form=form)
 
 
