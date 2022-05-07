@@ -10,19 +10,24 @@
     <body>
         <div>
             game:
-        <a href="{{ url_for('index') }}">Home</a>
-        <a href="{{ url_for('login') }}">Login</a>
+            {% if user %}
+                <a href="">{{ user.username }}</a>
+                <a href="">logout</a>
+            {% else %}
+                <a href="{{ url_for('index') }}">Home</a>
+                <a href="{{ url_for('login') }}">Login</a>
+            {% endif %}
         </div>
         <hr>
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <ul>
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-        {% endwith %}
+<!--        {% with messages = get_flashed_messages() %}-->
+<!--        {% if messages %}-->
+<!--        <ul>-->
+<!--            {% for message in messages %}-->
+<!--            <li>{{ message }}</li>-->
+<!--            {% endfor %}-->
+<!--        </ul>-->
+<!--        {% endif %}-->
+<!--        {% endwith %}-->
         {% block content %}{% endblock %}
     </body>
 </html>
