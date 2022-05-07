@@ -6,7 +6,6 @@ from app.models import User
 
 @app.route('/')
 def index():
-    print(g.user.username)
     return "Hello, world"
 
 

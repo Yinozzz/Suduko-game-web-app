@@ -1,23 +1,52 @@
 <!doctype html>
 <html>
     <head>
-      {% if title %}
-      <title>{{ title }} - game</title>
-      {% else %}
-      <title>Welcome to game</title>
-      {% endif %}
+        <title>base page</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="static/bootstrap.min.css" rel="stylesheet">
+        <link href="static/style.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+        {% if title %}
+        <title>{{ title }} - game</title>
+        {% else %}
+        <title>Welcome to game</title>
+        {% endif %}
     </head>
     <body>
-        <div>
-            game:
-            {% if user %}
-                <a href="">{{ user.username }}</a>
-                <a href="">logout</a>
-            {% else %}
-                <a href="{{ url_for('index') }}">Home</a>
-                <a href="{{ url_for('login') }}">Login</a>
-            {% endif %}
-        </div>
+        <nav class="navbar navbar-expand-sm fixed-top navbar-dark">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">Logo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+              <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="game.html">Game</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Rank</a>
+                </li>
+              </ul>
+                <div class="d-flex">
+                    {% if user %}
+                        <a class="nav-link" href="">{{ user.username }}</a>
+                        <a class="nav-link" href="">logout</a>
+                    {% else %}
+                        <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+                        <a class="nav-link" href="{{ url_for('register') }}">Register</a>
+                    {% endif %}
+                </div>
+            </div>
+          </div>
+        </nav>
+
+
         <hr>
 <!--        {% with messages = get_flashed_messages() %}-->
 <!--        {% if messages %}-->
