@@ -1,8 +1,10 @@
+from sqlalchemy import func
+
 from app import app, db
 from flask import render_template, request, flash, redirect, url_for, session, g
 from app.forms import RegisterForm, LoginForm, GameTableForm
-from app.models import User
-
+from app.models import User, GameResult
+import json
 
 @app.route('/')
 def index():
@@ -61,6 +63,27 @@ def game():
         return data_string
 
 
+@app.route('/rank', methods=['GET', 'POST'])
+def rank():
+    if request.method == "GET":
+        player_best_ranks = db.session.query(GameResult.playerId,
+                                             func.min(GameResult.time_spent)).group_by(GameResult.playerId).all()
+        print(player_best_ranks)
+        rank_dict = dict()
+        for i in range(len(player_best_ranks)):
+            temp_dict = dict()
+            temp_dict["player_name"] = User.query.filter(User.id == player_best_ranks[i][0]).first().username
+            temp_dict["best_mark"] = player_best_ranks[i][1]
+            rank_dict[i] = temp_dict
+        rank_json = json.dumps(rank_dict)
+        return rank_json
+    else:
+        playerId = request.form.get('playerId')
+        time_spent = request.form.get('time_spent')
+        rank = GameResult(playerId=playerId, time_spent=time_spent)
+        db.session.add(rank)
+        db.session.commit()
+        return ''
 
 
 
