@@ -12,3 +12,7 @@ class RegisterForm(wtforms.Form):
 class LoginForm(wtforms.Form):
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
+
+
+class GameTableForm(wtforms.Form):
+    number_string = StringField('Number_string', validators=[DataRequired()])

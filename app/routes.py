@@ -1,6 +1,6 @@
 from app import app, db
 from flask import render_template, request, flash, redirect, url_for, session, g
-from app.forms import RegisterForm, LoginForm
+from app.forms import RegisterForm, LoginForm, GameTableForm
 from app.models import User
 
 
@@ -52,7 +52,15 @@ def login():
 
 @app.route('/game', methods=['GET', 'POST'])
 def game():
-    return render_template('game.html')
+    if request.method == "GET":
+        return render_template('game.html')
+    else:
+        form = GameTableForm(request.form)
+        data_string = form.number_string.data
+        data_string = data_string.replace('\n', '')
+        return data_string
+
+
 
 
 
