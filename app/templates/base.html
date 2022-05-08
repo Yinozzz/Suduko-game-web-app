@@ -15,7 +15,8 @@
         {% endif %}
     </head>
     <body>
-        <nav class="navbar navbar-expand-sm fixed-top navbar-dark">
+    <section id="title">
+        <nav class="navbar navbar-expand-md fixed-top navbar-dark">
           <div class="container-fluid">
             <a class="navbar-brand" href="#">Logo</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
@@ -47,7 +48,13 @@
         </nav>
 
 
-        <hr>
+    </section>
+    <section>
+
+                {% block content %}{% endblock %}
+
+    </section>
+
 <!--        {% with messages = get_flashed_messages() %}-->
 <!--        {% if messages %}-->
 <!--        <ul>-->
@@ -57,6 +64,5 @@
 <!--        </ul>-->
 <!--        {% endif %}-->
 <!--        {% endwith %}-->
-        {% block content %}{% endblock %}
     </body>
 </html>

@@ -1,0 +1,28 @@
+.navbar {
+    padding: 0;
+    display:flex;
+    transition: all 0.5s;
+    background: rgba(42, 44, 57, 0.9);
+
+  }
+  .navbar a:hover, .navbar li:hover > a {
+    background: #ef6603;
+  }
+  .navbar-nav{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+  }
+
+  .navbar-nav a, .navbar-nav ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 20px;
+    color: black;
+  }
+
+
+
+  
