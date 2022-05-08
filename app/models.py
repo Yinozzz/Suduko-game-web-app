@@ -25,4 +25,17 @@ class GameResult(db.Model):
         return ''.format(self.id)
 
 
+class GameBank(db.Model):
+    __tablename__ = "game_bank"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    game = db.Column(db.String, unique=True, nullable=False)
+    uploaderId = db.Column(db.Integer, db.ForeignKey("user.id"))
+    upload_time = db.Column(db.DateTime)
+
+    uploader = db.relationship("User", backref="upload_games")
+
+    def __repr__(self):
+        return ''.format(self.id)
+
+
 

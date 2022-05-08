@@ -3,7 +3,7 @@ from sqlalchemy import func
 from app import app, db
 from flask import render_template, request, flash, redirect, url_for, session, g
 from app.forms import RegisterForm, LoginForm, GameTableForm
-from app.models import User, GameResult
+from app.models import User, GameResult, GameBank
 import json
 
 @app.route('/')
@@ -31,6 +31,7 @@ def register():
 @app.route('/login',methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
+
         return render_template('login.html')
     else:
         form = LoginForm(request.form)
@@ -55,12 +56,46 @@ def login():
 @app.route('/game', methods=['GET', 'POST'])
 def game():
     if request.method == "GET":
-        return render_template('game.html')
+        game_bank_obj = GameBank.query.filter(GameBank.id == 1).first()
+        return render_template('game.html', game=game_bank_obj.game.split(','))
     else:
+        rows = True
+        columns = True
+        grids = True
         form = GameTableForm(request.form)
         data_string = form.number_string.data
         data_string = data_string.replace('\n', '')
-        return data_string
+        listdata = data_string.split(',')
+        final_list = list()
+        for i in range(0, len(listdata), 9):
+            final_list.append(listdata[i:i+9])
+
+        for i in range(len(final_list)):
+            temp_col = list()
+            for j in range(len(final_list)):
+                temp_col.append(final_list[j][i])
+            if len(final_list[i]) != len(set(final_list[i])):
+                rows = False
+            if len(temp_col) != len(set(temp_col)):
+                columns = False
+        for i in [1, 4, 7]:
+            for j in [1, 4, 7]:
+                temp_grid = list()
+                temp_grid.append(final_list[i-1][j-1])
+                temp_grid.append(final_list[i-1][j])
+                temp_grid.append(final_list[i-1][j+1])
+                temp_grid.append(final_list[i][j-1])
+                temp_grid.append(final_list[i][j])
+                temp_grid.append(final_list[i][j+1])
+                temp_grid.append(final_list[i+1][j-1])
+                temp_grid.append(final_list[i+1][j])
+                temp_grid.append(final_list[i+1][j+1])
+                if len(temp_grid) != len(set(temp_grid)):
+                    grids = False
+        if rows and columns and grids:
+            return "success"
+        else:
+            return "fail"
 
 
 @app.route('/rank', methods=['GET', 'POST'])
