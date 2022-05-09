@@ -20,13 +20,18 @@ def register():
         form = RegisterForm(request.form)
         username = form.username.data
         password = form.password.data
-        if form.validate() and User.query.filter(User.username == username).first() is None:
-            new_user = User(username=username,password=password)
-            db.session.add(new_user)
-            db.session.commit()
-            return "successful"
+        if form.validate():
+            if User.query.filter(User.username == username).first() is None:
+                new_user = User(username=username,password=password)
+                db.session.add(new_user)
+                db.session.commit()
+                return redirect(url_for('login'))
+            else:
+                flash(" The user name already exists. ")
+                return redirect(url_for('register'))
         else:
-            return "fail"
+            flash(" Incorrect user name or password format. ")
+            return redirect(url_for('register'))
 
 
 @app.route('/login',methods=['GET', 'POST'])
@@ -51,6 +56,12 @@ def login():
         else:
             flash('not empty.')
             return redirect(url_for('login'))
+
+
+@app.route('/logout', methods=['GET', 'POST'])
+def logout():
+    session.clear()
+    return redirect(url_for('login'))
 
 
 @app.route('/game', methods=['GET', 'POST'])
