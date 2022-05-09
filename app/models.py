@@ -15,8 +15,8 @@ class GameResult(db.Model):
     __tablename__ = "result"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     playerId = db.Column(db.Integer, db.ForeignKey("user.id"))
-    start_time = db.Column(db.DateTime)
-    finish_time = db.Column(db.DateTime)
+    start_time = db.Column(db.Integer)
+    finish_time = db.Column(db.Integer)
     time_spent = db.Column(db.Integer)
 
     player = db.relationship("User", backref="games")
