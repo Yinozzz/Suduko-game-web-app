@@ -1,27 +1,29 @@
 body {
-background-image:url(../bg.jpg);
+background:url(../bg.jpg) no-repeat;
+margin: 0px;
+background-size: 100% 100%;
+background-attachment: fixed;
+
 }
 .heading-section {
   font-size: 28px;
-  color: #fff; }
+  color: #fff;
+}
 .login-wrap {
   position: relative;
-  color: rgba(255, 255, 255, 0.9); }
-  .login-wrap h3 {
-    font-weight: 300;
-    color: #fff; }
-  .login-wrap .social {
-    width: 100%; }
-.login-wrap .social a {
+  color: white;
   width: 100%;
   display: block;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  color: #000;
-  background: #fff; }
-.login-wrap .social a:hover {
-background: #000;
-color: #fff;
-border-color: #000; }
+  background: rgba(141, 60, 5, 0.178);
+  border-radius: 20px;
+  color: #fff;
+  width: 100%; 
+ }
+  .login-wrap h3 {
+    font-weight: 300;
+    color: #fff; 
+  }
+
 .checkbox-wrap {
   display: block;
   position: relative;
@@ -32,14 +34,16 @@ border-color: #000; }
   font-weight: 500;
 }
 .checkbox-primary {
-  color: #fbceb5; }
-  .checkbox-primary input:checked ~ .checkmark:after {
-    color: #fbceb5; }
+  color: rgba(221, 82, 17, 0.966);
+}
+.checkbox-primary input:checked ~ .checkmark:after {
+  color: rgba(221, 82, 17, 0.966); }
 
-   .btn.btn-primary {
-    background: #fbceb5 !important;
-    border: 1px solid #fbceb5 !important;
-    color: #000 !important; }
+.btn.btn-primary {
+  background: rgba(221, 82, 17, 0.966)!important;
+  border: 1px solid rgba(221, 82, 17, 0.966) !important;
+  color: #000 !important; 
+}
 
   .form-control {
   background: transparent;
@@ -47,7 +51,7 @@ border-color: #000; }
   height: 50px;
   color: white !important;
   border: 1px solid transparent;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(170, 156, 156, 0.13);
   border-radius: 40px;
   padding-left: 20px;
   padding-right: 20px;
@@ -61,3 +65,13 @@ border-color: #000; }
     border-color: rgba(255, 255, 255, 0.4); }
   .form-control:focus {
     border-color: rgba(255, 255, 255, 0.4); }
+  
+  .form-control::placeholder{
+    color:white;
+  }
+
+  .form-control:focus {
+    background-color: transparent;
+    border-color: rgba(221, 82, 17, 0.966);
+    outline: 0;
+  }
