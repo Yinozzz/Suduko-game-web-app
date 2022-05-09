@@ -31,7 +31,6 @@ def register():
 @app.route('/login',methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
-
         return render_template('login.html')
     else:
         form = LoginForm(request.form)
@@ -62,10 +61,12 @@ def game():
         rows = True
         columns = True
         grids = True
-        form = GameTableForm(request.form)
-        data_string = form.number_string.data
-        data_string = data_string.replace('\n', '')
-        listdata = data_string.split(',')
+        # form = GameTableForm(request.form)
+        # data_string = form.number_string.data
+        # data_string = data_string.replace('\n', '')
+        data_string = request.get_json()
+        print(data_string)
+        listdata = data_string['game_string'].split(',')
         final_list = list()
         for i in range(0, len(listdata), 9):
             final_list.append(listdata[i:i+9])
@@ -93,6 +94,12 @@ def game():
                 if len(temp_grid) != len(set(temp_grid)):
                     grids = False
         if rows and columns and grids:
+            input_db_data = GameResult(playerId=g.user.id,
+                                       start_time=data_string['start_time'],
+                                       finish_time=data_string['finish_time'],
+                                       time_spent=(data_string['finish_time']-data_string['start_time']))
+            db.session.add(input_db_data)
+            db.session.commit()
             return "success"
         else:
             return "fail"
