@@ -5,6 +5,7 @@ from flask import render_template, request, flash, redirect, url_for, session, g
 from app.forms import RegisterForm, LoginForm, GameTableForm
 from app.models import User, GameResult, GameBank
 import json
+import random
 
 @app.route('/')
 def index():
@@ -56,14 +57,15 @@ def login():
 def game():
     if request.method == "GET":
         game_bank_obj = GameBank.query.filter(GameBank.id == 1).first()
-        return render_template('game.html', game=game_bank_obj.game.split(','))
+        # random.seed(g.user.id)
+        random.seed(1)
+        random_list = random.sample(range(0, 81), 43)
+        print(random_list)
+        return render_template('game.html', game=game_bank_obj.game.split(','), random_list=random_list)
     else:
         rows = True
         columns = True
         grids = True
-        # form = GameTableForm(request.form)
-        # data_string = form.number_string.data
-        # data_string = data_string.replace('\n', '')
         data_string = request.get_json()
         print(data_string)
         listdata = data_string['game_string'].split(',')
