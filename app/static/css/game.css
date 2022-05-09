@@ -1,0 +1,9 @@
+#number{
+    display: none;
+}
+
+#game_table {
+    border-collapse: collapse;
+    margin: auto;
+    display: none;
+}
