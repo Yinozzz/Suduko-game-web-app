@@ -29,4 +29,13 @@ def context_processor():
         return {}
 
 
+@app.before_first_request
+def before_first_request():
+    if User.query.filter(User.username == 'admin').first() is None:
+        admin = User(username='admin', password='123456', user_type=0)
+        db.session.add(admin)
+        db.session.commit()
+
 from app import routes, models
+
+

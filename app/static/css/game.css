@@ -57,5 +57,9 @@ td {
 
 .rank {
     background-color: rgba(42, 44, 57, 0.9);
+}
 
+.rank ul li {
+    color: white;
+    list-style: none;
 }

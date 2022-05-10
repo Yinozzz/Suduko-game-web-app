@@ -22,7 +22,7 @@ def register():
         password = form.password.data
         if form.validate():
             if User.query.filter(User.username == username).first() is None:
-                new_user = User(username=username,password=password)
+                new_user = User(username=username, password=password, user_type=1)
                 db.session.add(new_user)
                 db.session.commit()
                 return redirect(url_for('login'))
@@ -82,9 +82,19 @@ def game():
             random.seed(1)
             user_flag = None
         random_list = random.sample(range(0, 81), 43)
-        print(random_list)
-        return render_template('game.html', game=game_bank_obj.game.split(','),
-                               random_list=random_list, user_flag=user_flag)
+
+        player_best_ranks = db.session.query(GameResult.playerId,
+                                             func.min(GameResult.time_spent)).group_by(GameResult.playerId).order_by(GameResult.time_spent).all()
+        print(player_best_ranks)
+        rank_list = list()
+        for i in range(len(player_best_ranks)):
+            temp_dict = dict()
+            temp_dict["player_name"] = User.query.filter(User.id == player_best_ranks[i][0]).first().username
+            temp_dict["best_mark"] = player_best_ranks[i][1]
+            temp_dict["rank"] = i + 1
+            rank_list.append(temp_dict)
+        # rank_json = json.dumps(rank_dict)
+        return render_template('game.html', game=game_bank_obj.game.split(','), random_list=random_list, user_flag=user_flag, rank_list=rank_list)
     else:
         rows = True
         columns = True
