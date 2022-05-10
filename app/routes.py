@@ -152,5 +152,54 @@ def rank():
         db.session.commit()
         return ''
 
+@app.route('/upload', methods=['GET', 'POST'])
+def upload():
+    if request.method == "GET":
+        # game_bank_obj = GameBank.query.filter(GameBank.id == 1).first()
+        # # random.seed(g.user.id)
+        # random.seed(1)
+        # random_list = random.sample(range(0, 81), 43)
+        # print(random_list)
+        return render_template('upload.html')
+    else:
+        rows = True
+        columns = True
+        grids = True
+        data_string = request.get_json()
+        listdata = data_string['game_string'].split(',')
+        final_list = list()
+        for i in range(0, len(listdata), 9):
+            final_list.append(listdata[i:i+9])
 
+        for i in range(len(final_list)):
+            temp_col = list()
+            for j in range(len(final_list)):
+                temp_col.append(final_list[j][i])
+            if len(final_list[i]) != len(set(final_list[i])):
+                rows = False
+            if len(temp_col) != len(set(temp_col)):
+                columns = False
+        for i in [1, 4, 7]:
+            for j in [1, 4, 7]:
+                temp_grid = list()
+                temp_grid.append(final_list[i-1][j-1])
+                temp_grid.append(final_list[i-1][j])
+                temp_grid.append(final_list[i-1][j+1])
+                temp_grid.append(final_list[i][j-1])
+                temp_grid.append(final_list[i][j])
+                temp_grid.append(final_list[i][j+1])
+                temp_grid.append(final_list[i+1][j-1])
+                temp_grid.append(final_list[i+1][j])
+                temp_grid.append(final_list[i+1][j+1])
+                if len(temp_grid) != len(set(temp_grid)):
+                    grids = False
+        if rows and columns and grids:
+            input_db_data = GameBank(game=data_string['game_string'],
+                uploaderId=g.user.id,
+                upload_time=None)
+            db.session.add(input_db_data)
+            db.session.commit()
+            return "success"
+        else:
+            return "fail"
 

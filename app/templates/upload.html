@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Upload</title>
+    <script src="static/js/upload.js" type="text/javascript"></script>
+    <link href="static/css/game.css" rel="stylesheet">
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block content %}
+    <div class="container-xxl game" >
+        <h1>Upload</h1>
+            <table id="upload_table" border="1">
+                 {% for num in [0,9,18,27,36,45,54,63,72] %}
+                    <tr>
+                        {% for j in range(9) %}
+                        <td contenteditable="true"></td>
+                        {% endfor %}
+                    </tr>
+                 {% endfor %}
+            </table>
+<!--        <form id="gameform" action="/game" method="post" style="text-align:center;">-->
+<!--            <input id="number" name="number_string" type="text" value="">-->
+<!--        </form>-->
+        <div id="result"></div>
+        <div class="button" align="center">
+            <button  id="submit_table" onclick="get_table_num()" >submit</button>
+        </div>
+    </div>
+
+    {% endblock %}
+<h1>rank</h1>
+
+</body>
+</html>

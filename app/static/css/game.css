@@ -19,8 +19,14 @@ h1 {
 
 #game_table {
     border-collapse: collapse;
-    display: none;
     margin-left: 25%;
+    background-color: white;
+    font-size: 30px;
+
+}
+#upload_table {
+    border-collapse: collapse;
+    margin:auto;
     background-color: white;
     font-size: 30px;
 
