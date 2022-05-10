@@ -5,9 +5,13 @@ body {
     background-attachment: fixed;
 }
 h1 {
-    color:pink;
+    color:#ef6603;
 }
 
+/* [class*="col-"]{
+    padding: 20px;
+
+} */
 
 #number{
     display: none;
@@ -34,11 +38,11 @@ td {
     border: 1px solid black !important;;
 }
 #start_button, #submit_table {
-    background-color:pink;
+    background-color:#ef6603;
     border-radius: 20px;
     padding:15px 60px;
     margin-top:10px;
-    border:pink solid 1px;
+    border:#ef6603 solid 1px;
 }
 
 #start_button:hover, #submit_table:hover {

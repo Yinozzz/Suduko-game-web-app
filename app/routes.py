@@ -37,6 +37,9 @@ def register():
 @app.route('/login',methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
+        # if g.user:
+        #     return render_template('login.html', user=g.user)
+        # else:
         return render_template('login.html')
     else:
         form = LoginForm(request.form)
@@ -51,8 +54,11 @@ def login():
                 flash('Incorrect password. Please try again.')
                 return redirect(url_for('login'))
             else:
+                if request.form.get('remember') == '1':
+                    session.permanent = True
                 session['username'] = username
                 return redirect(url_for('game'))
+
         else:
             flash('not empty.')
             return redirect(url_for('login'))
