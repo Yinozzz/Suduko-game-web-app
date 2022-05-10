@@ -1,0 +1,33 @@
+.row{
+    height: 400px;
+}
+
+#brief_div{
+    background-color: orangered;
+    height: 100%;
+}
+
+#brief_div > .brief {
+    background-color: gray;
+    margin-top: 10px;
+    height: 70%;
+}
+
+#example_div{
+    background-color: black;
+    height: 100%;
+}
+
+.buttons_group{
+    width: auto;
+    display: block;
+    margin:0 auto;
+}
+
+.register_button{
+    margin-left: 30px;
+}
+
+.login_button{
+    margin-right: 30%;
+}

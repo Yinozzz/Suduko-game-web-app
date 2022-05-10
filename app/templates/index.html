@@ -1,16 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
+<link href="static/css/index.css" rel="stylesheet">
 <div class="container-fluid mt-3">
-    <div class="row" style="height:400px">
-        <div class="col-sm-6 col-12 bg-primary text-white">
-            brief
-            <div>
-                <button>register</button>
-                <button>login</button>
+    <div class="row">
+        <div id="brief_div" class="col-sm-6 col-12">
+            <div class="brief">
+                brief 
+            </div>
+            <div class="buttons_group">
+                <button id="register_button">register</button>
+                <button id="login_button">login</button>
             </div>
         </div>
-        <div class="col-sm-6 bg-dark text-white">example</div>
+        <div id="example_div" class="col-sm-6">example</div>
     </div>
 </div>
 {% endblock %}
