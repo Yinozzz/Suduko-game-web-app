@@ -75,10 +75,16 @@ def game():
     if request.method == "GET":
         game_bank_obj = GameBank.query.filter(GameBank.id == 1).first()
         # random.seed(g.user.id)
-        random.seed(1)
+        if g.user:
+            random.seed(g.user.id)
+            user_flag = g.user
+        else:
+            random.seed(1)
+            user_flag = None
         random_list = random.sample(range(0, 81), 43)
         print(random_list)
-        return render_template('game.html', game=game_bank_obj.game.split(','), random_list=random_list)
+        return render_template('game.html', game=game_bank_obj.game.split(','),
+                               random_list=random_list, user_flag=user_flag)
     else:
         rows = True
         columns = True

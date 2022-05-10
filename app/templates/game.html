@@ -34,7 +34,11 @@
 <!--        </form>-->
             <div id="result"></div>
         <div class="button" align="center">
-            <button  id="start_button" onclick="start_game()" >start</button>
+            {% if user_flag %}
+                <button  id="start_button" onclick="start_game()" >start</button>
+            {% else %}
+                <button  id="start_button_no_user" onclick="javascript:window.location.href='/login'" >start</button>
+            {% endif %}
             <button  id="submit_table" onclick="get_table_num()" >submit</button>
         </div>
         </div>
