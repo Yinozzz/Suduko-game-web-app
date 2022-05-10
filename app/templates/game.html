@@ -21,7 +21,7 @@
                         <tr>
                             {% for j in [0,1,2,3,4,5,6,7,8] %}
                             {% if (num+j) in random_list %}
-                            <td contenteditable="false">{{ game[num+j] }}</td>
+                            <td contenteditable="false" style="background-color: coral;">{{ game[num+j] }}</td>
                             {% else %}
                             <td contenteditable="true"></td>
                             {% endif %}
@@ -38,7 +38,8 @@
             <button  id="submit_table" onclick="get_table_num()" >submit</button>
         </div>
         </div>
-        <div class="col-lg-3 col-md-offset-1 rank">.col-6 .col-md-4
+        <div class="col-lg-3 offset-lg-1 rank">
+            <h1>Rank</h1>
         </div>
       </div>
 

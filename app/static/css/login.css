@@ -5,16 +5,25 @@ background-size: 100% 100%;
 background-attachment: fixed;
 
 }
+.login-pad{
+  background: rgba(42, 44, 57, 0.9);
+  margin-top: 100px;
+  border-radius: 20px;
+  height:400px;
+
+}
 .heading-section {
   font-size: 28px;
   color: #fff;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 .login-wrap {
   position: relative;
   color: white;
   width: 100%;
   display: block;
-  background: rgba(141, 60, 5, 0.178);
   border-radius: 20px;
   color: #fff;
   width: 100%; 
