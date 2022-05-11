@@ -11,6 +11,14 @@ class User(db.Model):
     def __repr__(self):
         return ''.format(self.username)
 
+    def to_dict(self):
+        data = {
+            'id': self.id,
+            'username': self.username,
+            'password': self.password,
+            'user_type': self.user_type
+        }
+        return data
 
 class GameResult(db.Model):
     __tablename__ = "result"
