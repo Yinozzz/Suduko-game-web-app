@@ -4,6 +4,7 @@ from app import app, db
 from flask import render_template, request, flash, redirect, url_for, session, g
 from app.forms import RegisterForm, LoginForm, GameTableForm
 from app.models import User, GameResult, GameBank
+from werkzeug.security import generate_password_hash, check_password_hash
 import json
 import random
 
@@ -19,7 +20,7 @@ def register():
     else:
         form = RegisterForm(request.form)
         username = form.username.data
-        password = form.password.data
+        password = generate_password_hash(form.password.data)
         if form.validate():
             if User.query.filter(User.username == username).first() is None:
                 new_user = User(username=username, password=password, user_type=1)
@@ -37,9 +38,6 @@ def register():
 @app.route('/login',methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
-        # if g.user:
-        #     return render_template('login.html', user=g.user)
-        # else:
         return render_template('login.html')
     else:
         form = LoginForm(request.form)
@@ -50,7 +48,7 @@ def login():
             if user_object is None:
                 flash('invalid username or data')
                 return redirect(url_for('login'))
-            elif user_object.password != password:
+            elif not check_password_hash(user_object.password, password):
                 flash('Incorrect password. Please try again.')
                 return redirect(url_for('login'))
             else:
@@ -58,7 +56,6 @@ def login():
                     session.permanent = True
                 session['username'] = username
                 return redirect(url_for('game'))
-
         else:
             flash('not empty.')
             return redirect(url_for('login'))
