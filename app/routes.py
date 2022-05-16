@@ -8,6 +8,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import json
 import random
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -35,7 +36,7 @@ def register():
             return redirect(url_for('register'))
 
 
-@app.route('/login',methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
         return render_template('login.html')
@@ -82,7 +83,8 @@ def game():
         random_list = random.sample(range(0, 81), 43)
 
         player_best_ranks = db.session.query(GameResult.playerId,
-                                             func.min(GameResult.time_spent)).group_by(GameResult.playerId).order_by(GameResult.time_spent).all()
+                                             func.min(GameResult.time_spent)).group_by(GameResult.playerId).order_by(
+            GameResult.time_spent).all()
         print(player_best_ranks)
         rank_list = list()
         for i in range(len(player_best_ranks)):
@@ -103,7 +105,7 @@ def game():
         listdata = data_string['game_string'].split(',')
         final_list = list()
         for i in range(0, len(listdata), 9):
-            final_list.append(listdata[i:i+9])
+            final_list.append(listdata[i:i + 9])
 
         for i in range(len(final_list)):
             temp_col = list()
@@ -116,22 +118,22 @@ def game():
         for i in [1, 4, 7]:
             for j in [1, 4, 7]:
                 temp_grid = list()
-                temp_grid.append(final_list[i-1][j-1])
-                temp_grid.append(final_list[i-1][j])
-                temp_grid.append(final_list[i-1][j+1])
-                temp_grid.append(final_list[i][j-1])
+                temp_grid.append(final_list[i - 1][j - 1])
+                temp_grid.append(final_list[i - 1][j])
+                temp_grid.append(final_list[i - 1][j + 1])
+                temp_grid.append(final_list[i][j - 1])
                 temp_grid.append(final_list[i][j])
-                temp_grid.append(final_list[i][j+1])
-                temp_grid.append(final_list[i+1][j-1])
-                temp_grid.append(final_list[i+1][j])
-                temp_grid.append(final_list[i+1][j+1])
+                temp_grid.append(final_list[i][j + 1])
+                temp_grid.append(final_list[i + 1][j - 1])
+                temp_grid.append(final_list[i + 1][j])
+                temp_grid.append(final_list[i + 1][j + 1])
                 if len(temp_grid) != len(set(temp_grid)):
                     grids = False
         if rows and columns and grids:
             input_db_data = GameResult(playerId=g.user.id,
                                        start_time=data_string['start_time'],
                                        finish_time=data_string['finish_time'],
-                                       time_spent=(data_string['finish_time']-data_string['start_time']))
+                                       time_spent=(data_string['finish_time'] - data_string['start_time']))
             db.session.add(input_db_data)
             db.session.commit()
             return "success"
@@ -161,6 +163,7 @@ def rank():
         db.session.commit()
         return ''
 
+
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
     if request.method == "GET":
@@ -178,7 +181,7 @@ def upload():
         listdata = data_string['game_string'].split(',')
         final_list = list()
         for i in range(0, len(listdata), 9):
-            final_list.append(listdata[i:i+9])
+            final_list.append(listdata[i:i + 9])
 
         for i in range(len(final_list)):
             temp_col = list()
@@ -191,21 +194,21 @@ def upload():
         for i in [1, 4, 7]:
             for j in [1, 4, 7]:
                 temp_grid = list()
-                temp_grid.append(final_list[i-1][j-1])
-                temp_grid.append(final_list[i-1][j])
-                temp_grid.append(final_list[i-1][j+1])
-                temp_grid.append(final_list[i][j-1])
+                temp_grid.append(final_list[i - 1][j - 1])
+                temp_grid.append(final_list[i - 1][j])
+                temp_grid.append(final_list[i - 1][j + 1])
+                temp_grid.append(final_list[i][j - 1])
                 temp_grid.append(final_list[i][j])
-                temp_grid.append(final_list[i][j+1])
-                temp_grid.append(final_list[i+1][j-1])
-                temp_grid.append(final_list[i+1][j])
-                temp_grid.append(final_list[i+1][j+1])
+                temp_grid.append(final_list[i][j + 1])
+                temp_grid.append(final_list[i + 1][j - 1])
+                temp_grid.append(final_list[i + 1][j])
+                temp_grid.append(final_list[i + 1][j + 1])
                 if len(temp_grid) != len(set(temp_grid)):
                     grids = False
         if rows and columns and grids:
             input_db_data = GameBank(game=data_string['game_string'],
-                uploaderId=g.user.id,
-                upload_time=None)
+                                     uploaderId=g.user.id,
+                                     upload_time=None)
             db.session.add(input_db_data)
             db.session.commit()
             return "success"

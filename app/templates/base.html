@@ -36,7 +36,7 @@
               </ul>
                 <div class="d-flex">
                     {% if user %}
-                        <a class="nav-link" href="{{ url_for('logout') }}">{{ user.username }}</a>
+                        <a class="nav-link" href="{{ url_for('personal') }}">{{ user.username }}</a>
                         <a class="nav-link" href="{{ url_for('logout') }}">logout</a>
                     {% else %}
                         <a class="nav-link" href="{{ url_for('login') }}">Login</a>

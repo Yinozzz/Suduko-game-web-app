@@ -50,4 +50,6 @@ function start_game(){
     var data_obj = new Date()
     start_time = data_obj.getTime()
     document.getElementById("game_table").style.display="table"
+    document.getElementById("start_button").style.display="none"
+    document.getElementById("start_button_no_user").style.display="none"
 }
