@@ -11,7 +11,7 @@ function load_function(url, data, call_func){
 function get_table_num(){
     var data_obj = new Date()
     finish_time = data_obj.getTime()
-    table = document.getElementById("game_table")
+    table = document.getElementById("upload_table")
     data_string = ''
     data = []
     for(var i=0; i<table.rows.length ;i++){
