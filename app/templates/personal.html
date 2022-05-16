@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends "base.html" %}
+{% block content %}
+    <div>
+        <div id="head_pic">
+            <img src="{{ url_for('static', filename='default_head_pic.jpg') }}">
+        </div>
+        <div>
+            <h1 id="name">{{ result_dict["username"] }}</h1>
+        </div>
+    </div>
+
+    <div>
+        <h1>personal rank</h1>
+        <ul id="rank_list">
+            {% for li in result_dict["rank_list"] %}
+                <li>time spent: {{ li["time_spent"] }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
+</body>
+</html>

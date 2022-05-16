@@ -213,3 +213,21 @@ def upload():
         else:
             return "fail"
 
+
+@app.route('/personal', methods=['GET', 'POST'])
+def personal():
+    # current_user = request.args.get('id', 0)
+    result_dict = dict()
+    if g.user:
+        user_id = g.user.id
+        user_query_set = User.query.filter(User.id == user_id).first()
+        rank_query_set = GameResult.query.filter(GameResult.playerId == user_id)
+        result_dict['username'] = user_query_set.username
+        result_dict['rank_list'] = list()
+        for one_game in rank_query_set:
+            one_rank_dict = dict()
+            one_rank_dict['time_spent'] = one_game.time_spent
+            result_dict['rank_list'].append(one_rank_dict)
+        return render_template('personal.html', result_dict=result_dict)
+    else:
+        return redirect(url_for('login'))
