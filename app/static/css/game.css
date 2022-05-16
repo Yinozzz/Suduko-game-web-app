@@ -22,7 +22,7 @@ h1 {
     margin-left: 25%;
     background-color: white;
     font-size: 30px;
-
+    display: none;
 }
 #upload_table {
     border-collapse: collapse;
