@@ -40,6 +40,9 @@
                 <button  id="start_button_no_user" onclick="javascript:window.location.href='/login'" >start</button>
             {% endif %}
             <button  id="submit_table" onclick="get_table_num()" >submit</button>
+            {% if is_admin == 0 %}
+                <button  id="upload_button"  onclick="javascript:window.location.href='/upload'" >upload</button>
+            {% endif %}
         </div>
         </div>
         <div class="col-lg-3 offset-lg-1 rank">

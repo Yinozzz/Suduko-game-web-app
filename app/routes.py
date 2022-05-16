@@ -75,6 +75,7 @@ def game():
         if g.user:
             random.seed(g.user.id)
             user_flag = g.user
+            is_admin = User.query.filter(User.id == g.user.id).first().user_type
         else:
             random.seed(1)
             user_flag = None
@@ -91,7 +92,8 @@ def game():
             temp_dict["rank"] = i + 1
             rank_list.append(temp_dict)
         # rank_json = json.dumps(rank_dict)
-        return render_template('game.html', game=game_bank_obj.game.split(','), random_list=random_list, user_flag=user_flag, rank_list=rank_list)
+        return render_template('game.html', game=game_bank_obj.game.split(','), random_list=random_list,
+                               user_flag=user_flag, rank_list=rank_list, is_admin=is_admin)
     else:
         rows = True
         columns = True
