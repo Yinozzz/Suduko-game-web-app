@@ -1,11 +1,11 @@
-function show_upload_form(){
-    is_display = document.getElementById("upload_head_pic_form").style.display
-    if (is_display == 'block')
-        document.getElementById("upload_head_pic_form").style.display="none"
-    else{
-        document.getElementById("upload_head_pic_form").style.display="block"
-    }
-}
+// function show_upload_form(){
+//     is_display = document.getElementById("upload_head_pic_form").style.display
+//     if (is_display == 'block')
+//         document.getElementById("upload_head_pic_form").style.display="none"
+//     else{
+//         document.getElementById("upload_head_pic_form").style.display="block"
+//     }
+// }
 
 $(document).ready(function(){
     $('#upload_head_pic_form').submit(function(e){
@@ -29,3 +29,28 @@ $(document).ready(function(){
         }
     });
 });
+
+
+
+var btn = document.getElementById('open_button');
+var div = document.getElementById('background');
+var form=document.getElementById('upload_head_pic_form')
+var close = document.getElementById('close-button');
+ 
+btn.onclick = function show() {
+	div.style.display = "block";
+    form.style.display = "block";
+    
+}
+ 
+close.onclick = function close() {
+	div.style.display = "none";
+    form.style.display = "block";
+}
+ 
+window.onclick = function close(e) {
+	if (e.target == div) {
+		div.style.display = "none";
+        form.style.display = "block";
+	}
+}

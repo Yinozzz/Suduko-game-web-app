@@ -11,6 +11,7 @@ from app.models import User, GameResult, GameBank
 from werkzeug.security import generate_password_hash, check_password_hash
 import json
 from datetime import date
+import random
 
 
 @app.route('/')
