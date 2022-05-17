@@ -1,13 +1,17 @@
 function show_upload_form(){
-    document.getElementById("upload_head_pic_form").style.display="block"
+    is_display = document.getElementById("upload_head_pic_form").style.display
+    if (is_display == 'block')
+        document.getElementById("upload_head_pic_form").style.display="none"
+    else{
+        document.getElementById("upload_head_pic_form").style.display="block"
+    }
 }
 
 $(document).ready(function(){
     $('#upload_head_pic_form').submit(function(e){
         e.preventDefault();
-
-        var image_data = new FormData($("#upload_head_pic_form")[0]);
-        console.log(image_data)
+        if ($("#headpic_input").get(0).files[0]) {
+            var image_data = new FormData($("#upload_head_pic_form")[0]);
             $.ajax({
                 type: 'post',
                 url: '/avatar',
@@ -15,8 +19,13 @@ $(document).ready(function(){
                 processData: false,
                 contentType: false,
                 success: function(resp){
-                    alert("success")
+                    document.getElementById("upload_head_pic_form").style.display="none"
+                    $('#current_avatar').attr('src', resp)
+                    $('#change_pic').attr('src', resp)
                 }
             });
+        }else{
+            alert("please upload your head picture")
+        }
     });
 });

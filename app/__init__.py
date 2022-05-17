@@ -39,7 +39,7 @@ def before_first_request():
     default2 = '7,4,9,5,2,3,8,1,6,5,2,3,1,6,8,4,9,7,8,6,1,9,4,7,5,3,2,6,7,2,4,1,9,3,8,5,4,9,5,' \
                '8,3,6,7,2,1,1,3,8,2,7,5,9,6,4,3,8,6,7,5,2,1,4,9,9,5,4,6,8,1,2,7,3,2,1,7,3,9,4,6,5,8'
     if User.query.filter(User.username == 'admin').first() is None:
-        admin = User(username='admin', password='123456', user_type=0)
+        admin = User(username='admin', password='123456', user_type=0, head_pic_url='./static/default_head_pic.jpg')
         db.session.add(admin)
         db.session.commit()
     if GameBank.query.filter(GameBank.game == default1).first() is None:

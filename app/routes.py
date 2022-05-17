@@ -1,4 +1,5 @@
 import os
+import time
 
 from sqlalchemy import func
 
@@ -14,10 +15,6 @@ import random
 @app.route('/')
 def index():
     return render_template('index.html')
-
-@app.route('/introduction')
-def introduction():
-    return render_template('introduction.html')
 
 
 @app.route('/register', methods=['POST', 'GET'])
@@ -231,6 +228,7 @@ def personal():
         user_query_set = User.query.filter(User.id == user_id).first()
         rank_query_set = GameResult.query.filter(GameResult.playerId == user_id)
         result_dict['username'] = user_query_set.username
+        result_dict['head_pic_url'] = user_query_set.head_pic_url
         result_dict['rank_list'] = list()
         for one_game in rank_query_set:
             one_rank_dict = dict()
@@ -244,11 +242,26 @@ def personal():
 @app.route('/avatar', methods=['POST'])
 def avatar_upload():
     temp_pic = request.files.get('headpic')
-    temp_pic_path = os.path.join('./app/static/avatar'+str(1)+'.jpg')
-    front_end = './static/avatar'+str(1)+'.jpg'
-    if os.path.exists(temp_pic_path):
-        os.remove(temp_pic_path)
-    temp_pic.save(temp_pic_path)
-    return front_end
+    if g.user:
+
+        # temp_pic_path = os.path.join('./app/static/avatar'+random_name+'.jpg')
+        temp_pic_path = User.query.filter(User.id == g.user.id).first().head_pic_url
+        temp_pic_path = temp_pic_path.replace('./', './app/')
+        print(temp_pic_path)
+        front_end_url = './static/avatar'+str(g.user.id)+time.strftime("%Y%m%d%H%M%S", time.localtime()) +'.jpg'
+        create_url = front_end_url.replace('./', './app/')
+        if os.path.exists(temp_pic_path):
+            os.remove(temp_pic_path)
+        temp_pic.save(create_url)
+        user_info = User.query.filter(User.id == g.user.id).first()
+        if not user_info:
+            return redirect(url_for('register'))
+        else:
+            user_info.head_pic_url = front_end_url
+            db.session.merge(user_info)
+            db.session.commit()
+        return front_end_url
+    else:
+        return redirect(url_for('login'))
 
 
