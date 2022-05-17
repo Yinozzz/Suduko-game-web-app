@@ -41,7 +41,15 @@ function get_table_num(){
     load_function(game_url, game_info, function(){
         if (xhttp.status==200)
         {
-            document.getElementById("result").innerHTML = this.responseText;
+            result_json = JSON.parse(this.responseText)
+            document.getElementById("result").innerHTML = result_json['game_result'];
+            $("#rank_ul").empty();
+            for (var i=0; i<result_json['rank_list'].length && i <= 14;i++){
+                temp_li = document.createElement("li");
+//                {{i}}. {{rank_line[i].player_name}}: best rank {{rank_line[i].best_mark}}
+                temp_li.innerHTML = result_json['rank_list'][i]['rank'] + '. ' + result_json['rank_list'][i]['player_name'] + " Minimum completion time:" + result_json['rank_list'][i]['best_mark'] + 'S'
+                document.getElementById("rank_ul").appendChild(temp_li)
+            }
         }
     })
 }
