@@ -10,7 +10,7 @@ from app.forms import RegisterForm, LoginForm, GameTableForm
 from app.models import User, GameResult, GameBank
 from werkzeug.security import generate_password_hash, check_password_hash
 import json
-from datetime import date
+import random
 
 
 @app.route('/')
@@ -151,9 +151,40 @@ def game():
                                        time_spent=time_diff.seconds)
             db.session.add(input_db_data)
             db.session.commit()
-            return "success"
+
+            result_dict = dict()
+            player_best_ranks = db.session.query(GameResult.playerId,
+                                                 func.min(GameResult.time_spent)).group_by(
+                                                GameResult.playerId).order_by(
+                                                GameResult.time_spent).all()
+            rank_list = list()
+            for i in range(len(player_best_ranks)):
+                temp_dict = dict()
+                temp_dict["player_name"] = User.query.filter(User.id == player_best_ranks[i][0]).first().username
+                temp_dict["best_mark"] = player_best_ranks[i][1]
+                temp_dict["rank"] = i + 1
+                rank_list.append(temp_dict)
+            # rank_json = json.dumps(rank_dict)
+            result_dict['game_result'] = 'success'
+            result_dict['rank_list'] = rank_list
+            return json.dumps(result_dict)
         else:
-            return "fail"
+            result_dict = dict()
+            player_best_ranks = db.session.query(GameResult.playerId,
+                                                 func.min(GameResult.time_spent)).group_by(
+                GameResult.playerId).order_by(
+                GameResult.time_spent).all()
+            rank_list = list()
+            for i in range(len(player_best_ranks)):
+                temp_dict = dict()
+                temp_dict["player_name"] = User.query.filter(User.id == player_best_ranks[i][0]).first().username
+                temp_dict["best_mark"] = player_best_ranks[i][1]
+                temp_dict["rank"] = i + 1
+                rank_list.append(temp_dict)
+            # rank_json = json.dumps(rank_dict)
+            result_dict['game_result'] = 'fail'
+            result_dict['rank_list'] = rank_list
+            return json.dumps(result_dict)
 
 
 @app.route('/rank', methods=['GET', 'POST'])
@@ -223,7 +254,7 @@ def upload():
         if rows and columns and grids:
             input_db_data = GameBank(game=data_string['game_string'],
                                      uploaderId=g.user.id,
-                                     upload_time=date.fromtimestamp(time.time()))
+                                     upload_time=None)
             db.session.add(input_db_data)
             db.session.commit()
             return "success"

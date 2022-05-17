@@ -47,10 +47,10 @@
         </div>
         <div class="col-lg-3 offset-lg-1 rank">
             <h1>Rank</h1>
-            <ul>
+            <ul id="rank_ul">
                 {% if rank_list | length < 10 %}
                 {% for rank_line in rank_list %}
-                    <li> {{rank_line.rank}}. {{rank_line.player_name}}: best rank {{rank_line.best_mark}}</li>
+                    <li> {{rank_line.rank}}. {{rank_line.player_name}}: Minimum completion time: {{rank_line.best_mark}}S</li>
                 {% endfor %}
                 {% else %}
                 {% for i in [0,1,2,3,4,5,6,7,8,9] %}
