@@ -54,11 +54,25 @@
         </div>
         <div class="col-lg-8 rank">
             <h1>personal rank</h1>
-            <ul id="rank_list">
+<!--            <ul id="rank_list">-->
+<!--                {% for li in result_dict["rank_list"] %}-->
+<!--                    <li>start time:{{li["start_time"]}} finish time:{{li["finish_time"]}} time spent: {{ li["time_spent"] }}s</li>-->
+<!--                {% endfor %}-->
+<!--            </ul>-->
+            <table id="rank_list">
+                <tr>
+                    <th>start time</th>
+                    <th>finish time</th>
+                    <th>time spent</th>
+                </tr>
                 {% for li in result_dict["rank_list"] %}
-                    <li>time spent: {{ li["time_spent"] }}</li>
+                    <tr>
+                        <td>{{li["start_time"]}}</td>
+                        <td>{{li["finish_time"]}}</td>
+                        <td>{{ li["time_spent"] }}s</td>
+                    </tr>
                 {% endfor %}
-            </ul>
+            </table>
         </div>
     </div>
 
