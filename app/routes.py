@@ -16,6 +16,9 @@ import random
 def index():
     return render_template('index.html')
 
+@app.route('/introduction')
+def introduction():
+    return render_template('introduction.html')
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
