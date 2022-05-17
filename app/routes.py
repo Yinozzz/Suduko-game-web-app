@@ -275,7 +275,9 @@ def personal():
         result_dict['rank_list'] = list()
         for one_game in rank_query_set:
             one_rank_dict = dict()
-            one_rank_dict['time_spent'] = one_game.time_spent
+            one_rank_dict['start_time'] = one_game.start_time
+            one_rank_dict['finish_time'] = one_game.time_spent
+            one_rank_dict['time_spent'] = one_game.finish_time + 'S'
             result_dict['rank_list'].append(one_rank_dict)
         return render_template('personal.html', result_dict=result_dict)
     else:

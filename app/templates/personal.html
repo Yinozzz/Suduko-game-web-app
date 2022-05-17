@@ -40,7 +40,7 @@
         <h1>personal rank</h1>
         <ul id="rank_list">
             {% for li in result_dict["rank_list"] %}
-                <li>time spent: {{ li["time_spent"] }}</li>
+                <li> start time:{{li["start_time"]}} finish time: {{li["finish_time"]}} time spent: {{ li["time_spent"] }}</li>
             {% endfor %}
         </ul>
     </div>
