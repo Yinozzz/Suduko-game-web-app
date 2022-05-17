@@ -10,7 +10,7 @@ from app.forms import RegisterForm, LoginForm, GameTableForm
 from app.models import User, GameResult, GameBank
 from werkzeug.security import generate_password_hash, check_password_hash
 import json
-import random
+from datetime import date
 
 
 @app.route('/')
@@ -223,7 +223,7 @@ def upload():
         if rows and columns and grids:
             input_db_data = GameBank(game=data_string['game_string'],
                                      uploaderId=g.user.id,
-                                     upload_time=None)
+                                     upload_time=date.fromtimestamp(time.time()))
             db.session.add(input_db_data)
             db.session.commit()
             return "success"

@@ -9,8 +9,6 @@ function load_function(url, data, call_func){
 }
 
 function get_table_num(){
-    var data_obj = new Date()
-    finish_time = data_obj.getTime()
     table = document.getElementById("upload_table")
     data_string = ''
     data = []
@@ -31,12 +29,35 @@ function get_table_num(){
 //    document.getElementById("number").value = data_string.slice(0,-1)
 //    document.getElementById("gameform").submit()
 
-    var game_info = {"finish_time":finish_time, "game_string":data_string.slice(0,-1)}
+    var game_info = {"game_string":data_string.slice(0,-1)}
     var upload_url = "http://127.0.0.1:5000/upload"
     load_function(upload_url, game_info, function(){
         if (xhttp.status==200)
         {
             document.getElementById("result").innerHTML = this.responseText;
+        }
+    })
+}
+
+function get_input_num(){
+    // form = document.getElementById("getGameString")
+    var data_string=document.forms["getGameString"]["gameString"].value;
+    if (data_string == null || data_string == ""){
+        alert("please input game information before uploading.");
+        return false;
+    }
+
+//    document.getElementById("number").value = data_string.slice(0,-1)
+//    document.getElementById("gameform").submit()
+
+    var game_info = {"game_string":data_string}
+    var upload_url = "http://127.0.0.1:5000/upload"
+    load_function(upload_url, game_info, function(){
+        if (xhttp.status==200)
+        {
+            document.getElementById("result").innerHTML = this.responseText;
+        }else{
+            document.getElementById("result").innerHTML = "fail";
         }
     })
 }

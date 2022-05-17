@@ -43,7 +43,7 @@ td {
     height: 50px;
     border: 1px solid black !important;;
 }
-#start_button, #submit_table, #start_button_no_user{
+#start_button, #submit_table, #submit_form, #start_button_no_user{
     background-color:#ef6603;
     border-radius: 20px;
     padding:15px 60px;

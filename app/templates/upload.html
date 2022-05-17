@@ -13,19 +13,33 @@
     {% block content %}
     <div class="container-xxl game" >
         <h1>Upload</h1>
-            <table id="upload_table" border="1">
-                 {% for num in [0,9,18,27,36,45,54,63,72] %}
-                    <tr>
-                        {% for j in range(9) %}
-                        <td contenteditable="true"></td>
-                        {% endfor %}
-                    </tr>
-                 {% endfor %}
-            </table>
-        <div id="result"></div>
-        <div class="button" align="center">
-            <button  id="submit_table" onclick="get_table_num()" >submit</button>
+        <div class="row">
+            <div class="col-lg-6">
+                <table id="upload_table" border="1">
+                    {% for num in [0,9,18,27,36,45,54,63,72] %}
+                       <tr>
+                           {% for j in range(9) %}
+                           <td contenteditable="true"></td>
+                           {% endfor %}
+                       </tr>
+                    {% endfor %}
+               </table>
+               <div class="button" align="center">
+                   <button  id="submit_table" onclick="get_table_num()" >submit</button>
+               </div>
+            </div>
+            <div class="col-lg-6">
+                <form method="post" id="getGameString" name="getGameString">
+                    <input type="text" name="gameString">
+                </form>
+            <div id="result"></div>
+            <div class="button" align="center">
+                <button  id="submit_form" onclick="get_input_num()" >submit</button>
+            </div>
+            </div>
+
         </div>
+
     </div>
 
     {% endblock %}
