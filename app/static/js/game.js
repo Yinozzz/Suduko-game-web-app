@@ -29,6 +29,10 @@ function get_table_num(){
                 alert("please complete the game")
                 return
             }
+            if (String(data[i][j]).replace('<br>','') != /^[1-9]$/){
+                alert("please in put number")
+                return
+            }
             data_string = data_string + String(data[i][j]).replace('<br>','') + ','
         }
     }
