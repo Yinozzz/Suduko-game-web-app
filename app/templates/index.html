@@ -1,99 +1,73 @@
-
+<!DOCTYPE html>
 <link href="static/css/index.css" rel="stylesheet">
-    <!--owl.carousel.css-->
-    <link rel="stylesheet" href="static/css/owl.carousel.min.css">
-    <link href="static/css/owl.theme.default.min.css" rel="stylesheet"/>
 <script src="static/js/jquery.js"></script>
 <script src="static/js/bootstrap.min.js"></script>
 <body>
     {% extends "base.html" %}
     {% block content %}
-    <section class="slide">
-        <div id="index_carousel"class="carousel carousel-fade" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#index_carousel" data-slide-to="0" class="active"></li>
-                <li data-target="#index_carousel" data-slide-to="1"></li>
-            </ol>
-            <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <div class="slide_item slide1">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="single_item_content">
-                                        <h2>Consult Your <br> Business With Us</h2>
-                                        <p>
-                                            We are the unique Consultancy Farm for your business solution, That is ready to take challenge and knockout your business problems. 
-                                        </p>
-                                        <button type="button" class="slide-btn">
-                                        get started
-                                        </button>
-                                        <button type="button"  class="slide-btn">
-                                            explore more
-                                        </button>
-                                        
-                                    </div><!-- /.single-slide-item-content-->
-                                </div><!-- /.col-->
-                            </div><!-- /.row-->
-                        </div><!-- /.container-->
+    <section class="introduction" style="height:600px">
+        <div class="container">
+            <div id="index_carousel"class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-bs-target="#index_carousel" data-bs-slide-to="0" class="active"></li>
+                    <li data-bs-target="#index_carousel" data-bs-slide-to="1"></li>
+                </ol>
+                <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item active" data-bs-interval="8000">
+                        <div class="slide_item slide1">
+                            <div>
+                                <h2>Welcome<br>To Sudoku! </h2>
+                                <p>
+                                    Sudoku is a logic-based, combinatorial number-placement puzzle. In classic Sudoku, the objective is to fill a 9 × 9 grid with digits so that each column, each row, and each of the nine 3 × 3 subgrids that compose the grid (also called "boxes", "blocks", or "regions") contain all of the digits from 1 to 9. The puzzle setter provides a partially completed grid, which for a well-posed puzzle has a single solution.
+                                </p>
+                                <div style="margin-left: 150px;">
+                                    <a href="{{ url_for('introduction') }}"><button type="button" class="slide-btn">learn more</button></a>
 
+                                            {% if user %}
+                                            <a href="{{ url_for('game') }}"><button type="button" class="slide-btn">get started</button></a>
+                                            {% else %}
+                                            <a href="{{ url_for('login') }}"><button type="button" class="slide-btn">get started</button></a>
+                                            {% endif %}
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    <div class="carousel-item" data-bs-interval="5000">
+                        <div class="slide_item slide2">
+                                <div>
+                                    <h2>Variations of <br> Grid Sizes</h2>
+                                    <p>
+                                        Although the 9×9 grid with 3×3 regions is by far the most common, many other variations exist. Sample puzzles can be 4×4 grids with 2×2 regions; 5×5 grids with pentomino regions have been published under the name Logi-5; the World Puzzle Championship has featured a 6×6 grid with 2×3 regions and a 7×7 grid with six heptomino regions and a disjoint region. 
+                                    </p>
+                                    <div style="margin-left: 150px;">
+                                        <a href="{{ url_for('introduction') }}"><button type="button" class="slide-btn">learn more</button></a>
+                                                {% if user %}
+                                                <a href="{{ url_for('game') }}"><button type="button" class="slide-btn">get started</button></a>
+                                                {% else %}
+                                                <a href="{{ url_for('login') }}"><button type="button" class="slide-btn">get started</button></a>
+                                                {% endif %}
+                                    </div>
+                                </div><!-- /.single-slide-item-content-->
+                        </div><!-- /.single-slide-item-->
+                    </div><!-- /.item .active-->
+    
                 </div>
-                <div class="item">
-                    <div class="slide_item slide2">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="single_item_content">
-                                        <h2>
-                                            Consult Your <br> Business
-                                        </h2>
-                                        <p>
-                                            We are the unique Consultancy Farm for your business solution, That is ready to take challenge and knockout your business problems.  
-                                        </p>
-                                        <button type="button"  class="slide-btn">
-                                            get started
-                                        </button>
-                                        <button type="button"  class="slide-btn">
-                                            explore more
-                                        </button>
-                                    </div><!-- /.single-slide-item-content-->
-                                
-                                </div><!-- /.col-->
-                            </div><!-- /.row-->
-                        </div><!-- /.container-->
-                    </div><!-- /.single-slide-item-->
-                </div><!-- /.item .active-->
-
+                <!-- Controls -->
+                <a class="left carousel-control-prev" href="#index_carousel" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="right carousel-control-next" href="#index_carousel" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
+    
             </div>
-            				<!-- Controls -->
-            <a class="left carousel-control" href="#index_carousel" role="button" data-slide="prev">
-                <span class="lnr lnr-chevron-left"></span>
-            </a>
-            <a class="right carousel-control" href="#index_carousel" role="button" data-slide="next">
-                <span class="lnr lnr-chevron-right"></span>
-            </a>
+
+
 
         </div>
 
     </section>
-    <section>
-        <div class="container mt-3">
-            <div class="row">
-                <div id="brief_div" class="col-sm-6 col-12">
-                    <div class="brief">
-                        brief 
-                    </div>
-                    <div class="buttons_group">
-                        <button id="register_button">register</button>
-                        <button id="login_button">login</button>
-                    </div>
-                </div>
-                <div id="example_div" class="col-sm-6">example</div>
-            </div>
-        </div>
 
-    </section>
-    <script type="text/javascript" src="static/js/owl.carousel.min.js"></script>
 </body>
 {% endblock %}
