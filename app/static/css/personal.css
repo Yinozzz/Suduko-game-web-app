@@ -1,3 +1,104 @@
+.container{
+    background-color: rgba(42, 44, 57, 0.9);
+    height: 600px;
+}
+
+#current_avatar{
+    margin-left: 50px;
+    margin-top: 20px;
+    border-radius: 50px;
+    border:rgb(221, 82, 17) 1px solid;
+    display: inline;
+    width: 250px;
+    height: 250px;
+
+
+}
+/* user information */
+.user{
+    color:rgba(221, 82, 17, 0.966);
+    font-family: fantasy;
+    margin-left: 50px;
+}
+
+/* upload pic */
+.head_pic_upload{
+    height: 100px;
+    display: inline-block;
+    margin-top: 20px;
+}
+.head_pic_upload button{
+    background-color:#ef6603;
+    border-radius: 20px;
+    padding:15px 60px;
+    margin-top:10px;
+    margin-left: 40px;
+    border:#ef6603 solid 1px;
+    position:fixed;
+}
+
 #upload_head_pic_form{
     display: none;
+}
+#background {
+	display: none;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.5);
+}
+
+#window {
+	background:rgba(221, 82, 17, 0.966);
+	width: 30%;
+    height:30%;
+	z-index: 1;
+	margin: 12% auto;
+	overflow: auto;
+    color:black;
+    border-radius: 20px;
+    text-align: center;
+}
+
+#close-button {
+	color: black;
+	padding-top: 12px;
+	cursor: pointer;
+	padding-right: 15px;
+    float: right;
+	font-size: 30px;
+}
+
+#upload_head_display {
+	background:#24242bcc;
+	margin: auto;
+    text-align: center;
+    color:white;
+}
+ 
+#close {
+	padding: 5px;
+	background:rgba(221, 82, 17, 0.966);
+}
+
+#save_button{
+    background-color:#4b1702ea;
+    color:white;
+    border-radius: 20px;
+    margin-top:10px;
+    border:#4b1702ea solid 1px;
+}
+
+/* rank information */
+.rank{
+    text-align: center;
+    color:rgba(221, 82, 17, 0.966);
+    font-family:sans-serif;
+    height: 200px;
+}
+#rank_list{
+    background-color: rgb(30, 33, 49);
+
 }
