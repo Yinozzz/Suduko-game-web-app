@@ -6,7 +6,8 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(64), unique=True, nullable=False)
     password = db.Column(db.String(128), nullable=False)
-    user_type = db.Column(db.Integer)
+    user_type = db.Column(db.Integer, nullable=False)
+    head_pic_url = db.Column(db.String(256))
 
     def __repr__(self):
         return ''.format(self.username)

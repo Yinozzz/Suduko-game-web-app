@@ -1,3 +1,5 @@
+import os
+
 from sqlalchemy import func
 
 from app import app, db
@@ -237,3 +239,16 @@ def personal():
         return render_template('personal.html', result_dict=result_dict)
     else:
         return redirect(url_for('login'))
+
+
+@app.route('/avatar', methods=['POST'])
+def avatar_upload():
+    temp_pic = request.files.get('headpic')
+    temp_pic_path = os.path.join('./app/static/avatar'+str(1)+'.jpg')
+    front_end = './static/avatar'+str(1)+'.jpg'
+    if os.path.exists(temp_pic_path):
+        os.remove(temp_pic_path)
+    temp_pic.save(temp_pic_path)
+    return front_end
+
+
