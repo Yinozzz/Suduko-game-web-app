@@ -1,3 +1,4 @@
+from datetime import datetime
 import os
 import time
 
@@ -16,9 +17,11 @@ import random
 def index():
     return render_template('index.html')
 
+
 @app.route('/introduction')
 def introduction():
     return render_template('introduction.html')
+
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
@@ -30,7 +33,8 @@ def register():
         password = generate_password_hash(form.password.data)
         if form.validate():
             if User.query.filter(User.username == username).first() is None:
-                new_user = User(username=username, password=password, user_type=1)
+                new_user = User(username=username, password=password, user_type=1,
+                                head_pic_url='./static/default_head_pic.jpg')
                 db.session.add(new_user)
                 db.session.commit()
                 return redirect(url_for('login'))
@@ -86,8 +90,8 @@ def game():
         else:
             random.seed(1)
             user_flag = None
-            is_admin=1
-        random_list = random.sample(range(0, 81), 43)
+            is_admin = 1
+        random_list = random.sample(range(0, 81), 80)
 
         player_best_ranks = db.session.query(GameResult.playerId,
                                              func.min(GameResult.time_spent)).group_by(GameResult.playerId).order_by(
@@ -137,10 +141,14 @@ def game():
                 if len(temp_grid) != len(set(temp_grid)):
                     grids = False
         if rows and columns and grids:
+            start_time_obj = datetime.fromtimestamp(data_string['start_time'] / 1000)
+            finish_time_obj = datetime.fromtimestamp(data_string['finish_time'] / 1000)
+            time_diff = finish_time_obj - start_time_obj
+
             input_db_data = GameResult(playerId=g.user.id,
-                                       start_time=data_string['start_time'],
-                                       finish_time=data_string['finish_time'],
-                                       time_spent=(data_string['finish_time'] - data_string['start_time']))
+                                       start_time=datetime.strftime(start_time_obj, '%Y-%m-%d %H:%M:%S'),
+                                       finish_time=datetime.strftime(finish_time_obj, '%Y-%m-%d %H:%M:%S'),
+                                       time_spent=time_diff.seconds)
             db.session.add(input_db_data)
             db.session.commit()
             return "success"
@@ -250,9 +258,11 @@ def avatar_upload():
 
         # temp_pic_path = os.path.join('./app/static/avatar'+random_name+'.jpg')
         temp_pic_path = User.query.filter(User.id == g.user.id).first().head_pic_url
-        temp_pic_path = temp_pic_path.replace('./', './app/')
-        print(temp_pic_path)
-        front_end_url = './static/avatar'+str(g.user.id)+time.strftime("%Y%m%d%H%M%S", time.localtime()) +'.jpg'
+        if temp_pic_path:
+            temp_pic_path = temp_pic_path.replace('./', './app/')
+        else:
+            temp_pic_path = ''
+        front_end_url = './static/avatar' + str(g.user.id) + time.strftime("%Y%m%d%H%M%S", time.localtime()) + '.jpg'
         create_url = front_end_url.replace('./', './app/')
         if os.path.exists(temp_pic_path):
             os.remove(temp_pic_path)
@@ -267,5 +277,3 @@ def avatar_upload():
         return front_end_url
     else:
         return redirect(url_for('login'))
-
-
