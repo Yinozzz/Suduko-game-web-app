@@ -1,18 +1,67 @@
 <!DOCTYPE html>
+<link href="static/css/introduction.css" rel="stylesheet">
 <body>
     {% extends "base.html" %}
     {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
-                <h1>History</h1>
+            <div class="col-lg-12 content">
+                <h1>History of Sudoku</h1>
+                <div class="main_text">
+                    <p>
+                        The history of Sudoku dates back to an 18th Century Swiss mathematician’s game called “Latin Squares” (according to this article from the Economist) and some of the first number puzzles to appear in newspapers were published in France in 1895. But the modern game of Sudoku as we recognize it today was invented by Howard Garns, a freelance puzzle inventor from Connersville, Indiana, USA in 1979 when it was published in Dell Pencil Puzzles and Word Games magazine. The puzzle was known as “Number Place,” since it involved placing individual numbers into empty spots on a 9 x 9 grid.
+                    </p>
+                    <p>
+                        The game first appeared in Japan in 1984 where it was given the name “Sudoku,” which is short for a longer expression in Japanese – “Sūji wa dokushin ni kagiru” – which means, “the digits are limited to one occurrence.” Sudoku continues to be highly popular in Japan, where people buy over 600,000 Sudoku magazines per month.
+                    </p>
+                    <p>
+                        The man who reintroduced Sudoku “back” to the Western world was a New Zealand judge named Wayne Gould, who was on vacation in Tokyo in March 1997 when he discovered Sudoku in a bookstore. He quickly became a devoted enthusiast of Sudoku and spent the next six years developing a computer program that could generate Sudoku puzzles.
+                    </p>
+                    <p>
+                        The Times of London began publishing Sudoku puzzles in 2004, and the first U.S. newspaper to feature Sudoku was The Conway (New Hampshire) Daily Sun in 2004. Within the past 10 years, Sudoku has become a global phenomenon. The first World Sudoku Championship was hosted in Italy in 2006 and the 2013 World Sudoku Championship will be held in Beijing.
+                    </p>
+                    <p> From "https://sudoku.com/how-to-play/the-history-of-sudoku/"</p>
+                </div>
 
 
             </div>
-            <div class="col-lg-12">
-                <h1>Rule</h1>
+            <div class="col-lg-12 content">
+                <h1>Rules</h1>
+                <iframe style="display: block;margin:0 auto" width="560" height="315" src="https://www.youtube.com/embed/8zRXDsGydeQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <div class="main_text">
+                    <ol>
+                        <li>
+                            <h3>
+                                Each row must contain the numbers from 1 to 9, without repetitions
+                            </h3>
+                            <p>The player must focus on filling each row of the grid while ensuring there are no duplicated numbers. The placement order of the digits is irrelevant.<br>Every puzzle, regardless of the difficulty level, begins with allocated numbers on the grid. The player should use these numbers as clues to find which digits are missing in each row.</p>
+                        </li>
+                        <li>
+                            <h3>Each column must contain the numbers from 1 to 9, without repetitions</h3>
+                            <p>The Sudoku rules for the columns on the grid are exactly the same as for the rows. The player must also fill these with the numbers from 1 to 9, making sure each digit occurs only once per column.<br>The numbers allocated at the beginning of the puzzle work as clues to find which digits are missing in each column and their position.</p>
+                        </li>
+                        <li>
+                            <h3>The digits can only occur once per block (nonet)</h3>
+                            <p>A regular 9 x 9 grid is divided into 9 smaller blocks of 3 x 3, also known as nonets. The numbers from 1 to 9 can only occur once per nonet.<br>In practice, this means that the process of filling the rows and columns without duplicated digits finds inside each block another restriction to the numbers’ positioning.</p>
+                        </li>
+                        <li>
+                            <h3>The sum of every single row, column and nonet must equal 45</h3>
+                            <p>To find out which numbers are missing from each row, column or block or if there are any duplicates, the player can simply count or flex their math skills and sum the numbers. When the digits occur only once, the total of each row, column and group must be of 45.</p>
+                        </li>
+                    </ol>
+                    <p>From "https://www.sudokuonline.io/tips/sudoku-rules"</p>
+                
+                </div>
                 
 
+            </div>
+            <div class="col-lg-12 content">
+                <h1>Why We Play Sudoku</h1>
+                <p><b>Sudoku brings a sense of calm and order. </b>No matter how busy your life is, Sudoku offers a relaxing way to take a break from the world around you.  Many people make Sudoku a part of their daily schedule because it refreshes them and allows them to meet the other commitments with renewed energy and vigor.  Playing Sudoku also helps people feel a sense of mastery – this is one reason why the game is so popular.</p>
+                <p><b>Sudoku might help your brain stay healthy.</b> The American Alzheimer’s Association has endorsed Sudoku as a “brain game” that might help reduce the risk of Alzheimer’s disease, and some researchers believe that playing mentally stimulating games and puzzle games like Sudoku might be a good way to reduce our risk of dementia as we get older. (Although the science is not definitive on this subject, it’s worth thinking about!)</p>
+                <p><b>Sudoku provides an escape.</b>Sudoku is a fun puzzle game that can be played anytime, anywhere – making it easy to use these games as a quick, harmless bit of escapism from your daily routine. Many people say that Sudoku and other puzzle games are “addictive,” but it’s a much healthier addiction than smoking!</p>
+                <p><b>Sudoku is fun for all ages.</b>Sudoku is fun for all ages. Sudoku can be played by adults and senior citizens alike. There are special Sudoku games (for example, Sudoku puzzles with only the numbers 1-4 instead of the usual 1-9) and the rules of the game and the various online Sudoku games and Sudoku mobile apps are simple enough for almost anyone to quickly get up to speed on the game, whether or not they consider themselves to be “tech savvy” or “good at math.” Sudoku can even be a fun game for parents to play with their children – you can both sit together and help your child learn how to fill in the spaces on the grid, teaching logical problem-solving skills and helping your child feel a sense of accomplishment with each puzzle solved.</p>
+                <p><b>Sudoku can help get rid of “earworms.”</b>Have you ever had an “earworm?” Not a parasitic worm in your ear – a song that gets stuck in your head and won’t stop replaying. Scientists at Western Washington University found that playing Sudoku (while listening to a persistent “earworm” song) helped people get the songs out of their heads faster – but only if the Sudoku puzzles were not too difficult. This is an unexpected (but much-appreciated) benefit of playing Sudoku!</p>
             </div>
 
         </div>
