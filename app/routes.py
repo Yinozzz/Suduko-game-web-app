@@ -206,11 +206,6 @@ def rank():
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
     if request.method == "GET":
-        # game_bank_obj = GameBank.query.filter(GameBank.id == 1).first()
-        # # random.seed(g.user.id)
-        # random.seed(1)
-        # random_list = random.sample(range(0, 81), 43)
-        # print(random_list)
         return render_template('upload.html')
     else:
         rows = True
@@ -248,9 +243,12 @@ def upload():
             input_db_data = GameBank(game=data_string['game_string'],
                                      uploaderId=g.user.id,
                                      upload_time=date.fromtimestamp(time.time()))
-            db.session.add(input_db_data)
-            db.session.commit()
-            return "success"
+            if GameBank.query.filter(GameBank.game==data_string['game_string']).first():
+                return "the game already exits"
+            else:
+                db.session.add(input_db_data)
+                db.session.commit()
+                return "success"
         else:
             return "fail"
 

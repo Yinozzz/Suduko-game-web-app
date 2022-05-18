@@ -47,14 +47,17 @@ function get_table_num(){
 
 function get_input_num(){
     // form = document.getElementById("getGameString")
+    var regexp_string = /^([1-9],){80}[1-9]$/;
     var data_string=document.forms["getGameString"]["gameString"].value;
     if (data_string == null || data_string == ""){
         alert("please input game information before uploading.");
         return false;
     }
+    if (!data_string.replace('<br>','').match(regexp_string)){
+        alert("please input correctly formatted string.");
+        return false;
+    }
 
-//    document.getElementById("number").value = data_string.slice(0,-1)
-//    document.getElementById("gameform").submit()
 
     var game_info = {"game_string":data_string}
     var upload_url = "http://127.0.0.1:5000/upload"

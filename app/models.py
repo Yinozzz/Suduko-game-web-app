@@ -21,6 +21,7 @@ class User(db.Model):
         }
         return data
 
+
 class GameResult(db.Model):
     __tablename__ = "result"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -46,6 +47,5 @@ class GameBank(db.Model):
 
     def __repr__(self):
         return ''.format(self.id)
-
 
 
