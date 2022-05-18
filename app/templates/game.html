@@ -39,7 +39,7 @@
             {% else %}
                 <button  id="start_button_no_user" onclick="javascript:window.location.href='/login'" >start</button>
             {% endif %}
-            <button  id="submit_table" onclick="get_table_num();show()" >submit</button>
+            <button  id="submit_table" onclick="get_table_num()" >submit</button>
             {% if is_admin == 0 %}
                 <button  id="upload_button"  onclick="javascript:window.location.href='/upload'" >upload</button>
             {% endif %}
@@ -62,9 +62,9 @@
       </div>
 
 </div>
-<div class="background" id="background">
-    <canvas id="canvas"></canvas>
-  </div>
+<!--<div class="background" id="background">-->
+<!--    <canvas id="canvas"></canvas>-->
+<!--  </div>-->
     {% endblock %}
 </body>
 </html>

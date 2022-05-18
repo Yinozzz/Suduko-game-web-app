@@ -155,26 +155,22 @@ def game():
 
             result_dict = dict()
             player_best_ranks = db.session.query(GameResult.playerId,
-                                                 func.min(GameResult.time_spent)).group_by(
-                GameResult.playerId).order_by(
-                GameResult.time_spent).all()
+                                                 func.min(GameResult.time_spent)).group_by(GameResult.playerId).order_by(GameResult.time_spent).all()
             rank_list = list()
             for i in range(len(player_best_ranks)):
                 temp_dict = dict()
-                temp_dict["player_name"] = User.query.filter(User.id == player_best_ranks[i][0]).first().username
+                temp_dict["player_name"] = ""+User.query.filter(User.id == player_best_ranks[i][0]).first().username
                 temp_dict["best_mark"] = player_best_ranks[i][1]
                 temp_dict["rank"] = i + 1
                 rank_list.append(temp_dict)
             # rank_json = json.dumps(rank_dict)
-            result_dict['game_result'] = 'success'
-            result_dict['rank_list'] = rank_list
+            result_dict["game_result"] = "success"
+            result_dict["rank_list"] = rank_list
             return json.dumps(result_dict)
         else:
             result_dict = dict()
             player_best_ranks = db.session.query(GameResult.playerId,
-                                                 func.min(GameResult.time_spent)).group_by(
-                GameResult.playerId).order_by(
-                GameResult.time_spent).all()
+                                                 func.min(GameResult.time_spent)).group_by(GameResult.playerId).order_by(GameResult.time_spent).all()
             rank_list = list()
             for i in range(len(player_best_ranks)):
                 temp_dict = dict()
@@ -183,8 +179,8 @@ def game():
                 temp_dict["rank"] = i + 1
                 rank_list.append(temp_dict)
             # rank_json = json.dumps(rank_dict)
-            result_dict['game_result'] = 'fail'
-            result_dict['rank_list'] = rank_list
+            result_dict["game_result"] = "fail"
+            result_dict["rank_list"] = rank_list
             return json.dumps(result_dict)
 
 

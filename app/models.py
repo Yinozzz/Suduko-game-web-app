@@ -27,7 +27,7 @@ class GameResult(db.Model):
     playerId = db.Column(db.Integer, db.ForeignKey("user.id"))
     start_time = db.Column(db.String, nullable=False)
     finish_time = db.Column(db.String, nullable=False)
-    time_spent = db.Column(db.String, nullable=False)
+    time_spent = db.Column(db.Integer, nullable=False)
 
     player = db.relationship("User", backref="games")
 
