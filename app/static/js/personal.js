@@ -45,12 +45,12 @@ btn.onclick = function show() {
  
 close.onclick = function close() {
 	div.style.display = "none";
-    form.style.display = "block";
+    form.style.display = "none";
 }
  
 window.onclick = function close(e) {
 	if (e.target == div) {
 		div.style.display = "none";
-        form.style.display = "block";
+        form.style.display = "none";
 	}
 }
