@@ -22,6 +22,8 @@ $(document).ready(function(){
                     document.getElementById("upload_head_pic_form").style.display="none"
                     $('#current_avatar').attr('src', resp)
                     $('#change_pic').attr('src', resp)
+                    var temp_win = document.getElementById('background')
+                    temp_win.style.display = 'none'
                 }
             });
         }else{

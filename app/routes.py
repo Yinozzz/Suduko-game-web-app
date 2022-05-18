@@ -104,8 +104,7 @@ def game():
             temp_dict["best_mark"] = player_best_ranks[i][1]
             temp_dict["rank"] = i + 1
             rank_list.append(temp_dict)
-        return render_template('game.html', game=game_bank_obj.game.split(','), random_list=random_list,
-                               user_flag=user_flag, rank_list=rank_list, is_admin=is_admin)
+        return render_template('game.html', game=game_bank_obj.game.split(','), random_list=random_list, user_flag=user_flag, rank_list=rank_list, is_admin=is_admin)
     else:
         rows = True
         columns = True
@@ -180,27 +179,27 @@ def game():
             return json.dumps(result_dict)
 
 
-@app.route('/rank', methods=['GET', 'POST'])
-def rank():
-    if request.method == "GET":
-        player_best_ranks = db.session.query(GameResult.playerId,
-                                             func.min(GameResult.time_spent)).group_by(GameResult.playerId).all()
-        print(player_best_ranks)
-        rank_dict = dict()
-        for i in range(len(player_best_ranks)):
-            temp_dict = dict()
-            temp_dict["player_name"] = User.query.filter(User.id == player_best_ranks[i][0]).first().username
-            temp_dict["best_mark"] = player_best_ranks[i][1]
-            rank_dict[i] = temp_dict
-        rank_json = json.dumps(rank_dict)
-        return rank_json
-    else:
-        playerId = request.form.get('playerId')
-        time_spent = request.form.get('time_spent')
-        rank = GameResult(playerId=playerId, time_spent=time_spent)
-        db.session.add(rank)
-        db.session.commit()
-        return ''
+# @app.route('/rank', methods=['GET', 'POST'])
+# def rank():
+#     if request.method == "GET":
+#         player_best_ranks = db.session.query(GameResult.playerId,
+#                                              func.min(GameResult.time_spent)).group_by(GameResult.playerId).all()
+#         print(player_best_ranks)
+#         rank_dict = dict()
+#         for i in range(len(player_best_ranks)):
+#             temp_dict = dict()
+#             temp_dict["player_name"] = User.query.filter(User.id == player_best_ranks[i][0]).first().username
+#             temp_dict["best_mark"] = player_best_ranks[i][1]
+#             rank_dict[i] = temp_dict
+#         rank_json = json.dumps(rank_dict)
+#         return rank_json
+#     else:
+#         playerId = request.form.get('playerId')
+#         time_spent = request.form.get('time_spent')
+#         rank = GameResult(playerId=playerId, time_spent=time_spent)
+#         db.session.add(rank)
+#         db.session.commit()
+#         return ''
 
 
 @app.route('/upload', methods=['GET', 'POST'])
