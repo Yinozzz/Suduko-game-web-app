@@ -42,29 +42,24 @@
                                     <input class="btn-check" id="save_button" type="submit" value="save">
                                 </div>
                             </form>
-
                         </div>
-
-
                     </div>
 
                 </div>
             </div>
         
         </div>
+
         <div class="col-lg-8 rank">
             <h1>personal rank</h1>
-<!--            <ul id="rank_list">-->
-<!--                {% for li in result_dict["rank_list"] %}-->
-<!--                    <li>start time:{{li["start_time"]}} finish time:{{li["finish_time"]}} time spent: {{ li["time_spent"] }}s</li>-->
-<!--                {% endfor %}-->
-<!--            </ul>-->
+            Current page：{{ paginate.page }}&nbsp;&nbsp; PageCount：{{ paginate.pages }}&nbsp;&nbsp; total:{{ paginate.total }}<br>
             <table class="table table-bordered table-hover" id="rank_list">
                 <tr>
                     <th>start time</th>
                     <th>finish time</th>
                     <th>time spent</th>
                 </tr>
+
                 {% for li in result_dict["rank_list"] %}
                     <tr>
                         <td>{{li["start_time"]}}</td>
@@ -73,6 +68,13 @@
                     </tr>
                 {% endfor %}
             </table>
+            {% if paginate.has_prev %}
+                <a href="/personal?page={{ paginate.prev_num }}">previous page</a>
+            {% endif %}
+
+            {% if paginate.has_next %}
+                <a href="/personal?page={{ paginate.next_num }}">next page</a>
+            {% endif %}
         </div>
     </div>
 

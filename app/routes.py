@@ -259,18 +259,20 @@ def personal():
     result_dict = dict()
     if g.user:
         user_id = g.user.id
+        page = int(request.args.get('page', 1))
+        per_page = int(request.args.get('per_page', 10))
         user_query_set = User.query.filter(User.id == user_id).first()
-        rank_query_set = GameResult.query.filter(GameResult.playerId == user_id)
+        rank_query_set = GameResult.query.filter(GameResult.playerId == user_id).paginate(page, per_page, error_out=False)
         result_dict['username'] = user_query_set.username
         result_dict['head_pic_url'] = user_query_set.head_pic_url
         result_dict['rank_list'] = list()
-        for one_game in rank_query_set:
+        for one_game in rank_query_set.items:
             one_rank_dict = dict()
             one_rank_dict['start_time'] = one_game.start_time
             one_rank_dict['finish_time'] = one_game.finish_time
             one_rank_dict['time_spent'] = one_game.time_spent
             result_dict['rank_list'].append(one_rank_dict)
-        return render_template('personal.html', result_dict=result_dict)
+        return render_template('personal.html', result_dict=result_dict, paginate=rank_query_set)
     else:
         return redirect(url_for('login'))
 
@@ -279,7 +281,6 @@ def personal():
 def avatar_upload():
     temp_pic = request.files.get('headpic')
     if g.user:
-
         # temp_pic_path = os.path.join('./app/static/avatar'+random_name+'.jpg')
         temp_pic_path = User.query.filter(User.id == g.user.id).first().head_pic_url
         if temp_pic_path:
@@ -288,7 +289,7 @@ def avatar_upload():
             temp_pic_path = ''
         front_end_url = './static/avatar' + str(g.user.id) + time.strftime("%Y%m%d%H%M%S", time.localtime()) + '.jpg'
         create_url = front_end_url.replace('./', './app/')
-        if os.path.exists(temp_pic_path):
+        if os.path.exists(temp_pic_path) and not temp_pic_path.find('default'):
             os.remove(temp_pic_path)
         temp_pic.save(create_url)
         user_info = User.query.filter(User.id == g.user.id).first()
