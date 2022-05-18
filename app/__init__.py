@@ -49,6 +49,6 @@ def before_first_request():
         db.session.commit()
 
 
-from app import routes, models, api
+from app import routes, models
 
 
