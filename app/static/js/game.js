@@ -50,6 +50,15 @@ function get_table_num(){
             result_json = JSON.parse(this.responseText)
             console.log(result_json)
             document.getElementById("result").innerHTML = result_json['game_result'];
+
+            for(var i=0; i<table.rows.length ;i++){
+                for(var j=0; j < table.rows[i].cells.length ;j++){
+                    table.rows[i].cells[j].setAttribute('contenteditable', "false")
+                }
+            }
+
+            document.getElementById("submit_table").style.display="none"
+
             $("#rank_ul").empty();
             for (var i=0; i<result_json['rank_list'].length && i <= 14;i++){
                 temp_li = document.createElement("li");
