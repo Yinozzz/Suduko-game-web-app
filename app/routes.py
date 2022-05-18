@@ -206,6 +206,8 @@ def rank():
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
     if request.method == "GET":
+        if g.user.user_type != 0:
+            return render_template('rank.html')
         return render_template('upload.html')
     else:
         rows = True
