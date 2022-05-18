@@ -7,7 +7,7 @@ function load_function(url, data, call_func){
     // IE7+, Firefox, Chrome, Opera, Safari
     xhttp=new XMLHttpRequest();
     xhttp.onreadystatechange=call_func;
-    xhttp.open("POST",url,true);
+    xhttp.open("POST",url,false);
     xhttp.setRequestHeader("content-type","application/json");
     xhttp.send(JSON.stringify(data));
 }
@@ -19,6 +19,7 @@ function get_table_num(){
     table = document.getElementById("game_table")
     data_string = ''
     data = []
+    regexp_num = /^[1-9]$/;
     for(var i=0; i<table.rows.length ;i++){
         for(var j=0; j < table.rows[i].cells.length ;j++){
             if(!data[i]){
@@ -29,10 +30,10 @@ function get_table_num(){
                 alert("please complete the game")
                 return
             }
-//            if (String(data[i][j]).replace('<br>','') != /^[1-9]$/){
-//                alert("please in put number")
-//                return
-//            }
+            if (!String(data[i][j]).replace('<br>','').match(regexp_num)){
+                alert("please in put one number in each grid")
+                return
+            }
             data_string = data_string + String(data[i][j]).replace('<br>','') + ','
         }
     }
@@ -45,6 +46,7 @@ function get_table_num(){
     load_function(game_url, game_info, function(){
         if (xhttp.status==200)
         {
+            console.log(this.responseText)
             result_json = JSON.parse(this.responseText)
             console.log(result_json)
             document.getElementById("result").innerHTML = result_json['game_result'];

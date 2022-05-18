@@ -12,16 +12,22 @@ function get_table_num(){
     table = document.getElementById("upload_table")
     data_string = ''
     data = []
+    regexp_num = /^[1-9]$/;
     for(var i=0; i<table.rows.length ;i++){
         for(var j=0; j < table.rows[i].cells.length ;j++){
             if(!data[i]){
                 data[i] = new Array()
             }
             data[i][j] = table.rows[i].cells[j].innerHTML
+            if (!String(data[i][j]).replace('<br>','').match(regexp_num)){
+                alert("please in put one number in each grid")
+                return
+            }
             if (String(data[i][j]).replace('<br>','') == ''){
                 alert("please complete the upload table")
                 return
             }
+
             data_string = data_string + String(data[i][j]).replace('<br>','') + ','
         }
     }

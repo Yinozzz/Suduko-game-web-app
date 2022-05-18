@@ -97,7 +97,6 @@ def game():
         player_best_ranks = db.session.query(GameResult.playerId,
                                              func.min(GameResult.time_spent)).group_by(GameResult.playerId).order_by(
             GameResult.time_spent).all()
-        print(player_best_ranks)
         rank_list = list()
         for i in range(len(player_best_ranks)):
             temp_dict = dict()
@@ -105,7 +104,6 @@ def game():
             temp_dict["best_mark"] = player_best_ranks[i][1]
             temp_dict["rank"] = i + 1
             rank_list.append(temp_dict)
-        # rank_json = json.dumps(rank_dict)
         return render_template('game.html', game=game_bank_obj.game.split(','), random_list=random_list,
                                user_flag=user_flag, rank_list=rank_list, is_admin=is_admin)
     else:
@@ -113,7 +111,6 @@ def game():
         columns = True
         grids = True
         data_string = request.get_json()
-        print(data_string)
         listdata = data_string['game_string'].split(',')
         final_list = list()
         for i in range(0, len(listdata), 9):
@@ -163,7 +160,6 @@ def game():
                 temp_dict["best_mark"] = player_best_ranks[i][1]
                 temp_dict["rank"] = i + 1
                 rank_list.append(temp_dict)
-            # rank_json = json.dumps(rank_dict)
             result_dict["game_result"] = "success"
             result_dict["rank_list"] = rank_list
             return json.dumps(result_dict)
