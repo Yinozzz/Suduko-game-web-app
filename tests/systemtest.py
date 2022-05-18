@@ -1,5 +1,6 @@
 import unittest, os, time
 from app import app, db
+# from test_config import Test_Config
 from app.models import User, GameResult, GameBank
 from selenium import webdriver
 
@@ -28,9 +29,10 @@ class SystemTest(unittest.TestCase):
         if not self.driver:
             self.skipTest('Web browser not available')
         else:
-            app.config['SQLALCHEMY_DATABASE_URI'] = \
-                'sqlite:///' + os.path.join(basedir, 'test.db')
-            self.app = app.test_client()  # creates a virtual test environment
+            # app.config.from_object(Test_Config)
+            # self.app = app
+            # self.client = app.test_client()  # creates a virtual test environment
+            db.init_app(app)
             db.create_all()
             # s1 = Student(id='22222222', first_name='Test', surname='Case', cits3403=True)
             # s2 = Student(id='11111111', first_name='Unit', surname='Test', cits3403=True)
@@ -41,19 +43,19 @@ class SystemTest(unittest.TestCase):
             # db.session.commit()
 
             # create test admin user
-            self.admin = User(username=test_admin_username,
-                              password=test_admin_password,
-                              user_type=0)
+            # self.admin = User(username=test_admin_username,
+            #                   password=test_admin_password,
+            #                   user_type=0)
             # create test user
-            self.user = User(username=test_user1_username,
-                              password=test_user1_password,
-                              user_type=1)
-
-            # create test game
-            self.game = GameBank(game=test_game1, uploaderId=test_game1_uploadId)
-            db.session.add(self.admin)
-            db.session.add(self.user)
-            db.session.add(self.game)
+            # self.user = User(username=test_user1_username,
+            #                   password=test_user1_password,
+            #                   user_type=1)
+            #
+            # # create test game
+            # self.game = GameBank(game=test_game1, uploaderId=test_game1_uploadId)
+            # # db.session.add(self.admin)
+            # db.session.add(self.user)
+            # db.session.add(self.game)
             db.session.commit()
 
             self.driver.maximize_window()
@@ -92,18 +94,18 @@ class SystemTest(unittest.TestCase):
         self.assertEqual(result, "inline-block")
 
 
-    def test_upload(self):
-        self.test_login_admin_user()
-        time.sleep(1)
-        self.driver.find_element_by_id("upload_button").click()
-        time.sleep(1)
-        self.driver.find_element_by_id("gameString").send_keys("6,9,5,1,2,3,7,4,8,7,4,1,8,6,9,2,5,3,2,3,8,4,5,7,1,6,9,8,1,6,7,4,5,3,9,2,5,2,4,3,9,8,6,7,1,3,7,9,6,1,2,4,8,5,4,8,3,9,7,1,5,2,6,1,6,2,5,8,4,9,3,7,9,5,7,2,3,6,8,1,4")
-        time.sleep(1)
-        self.driver.find_element_by_id("submit_form").click()
-        self.driver.implicitly_wait(5)
-        time.sleep(1)
-        result = self.driver.find_element_by_id("result")
-        self.assertEqual(result.text, 'fail')
+    # def test_upload(self):
+    #     self.test_login_admin_user()
+    #     time.sleep(1)
+    #     self.driver.find_element_by_id("upload_button").click()
+    #     time.sleep(1)
+    #     self.driver.find_element_by_id("gameString").send_keys("6,9,5,1,2,3,7,4,8,7,4,1,8,6,9,2,5,3,2,3,8,4,5,7,1,6,9,8,1,6,7,4,5,3,9,2,5,2,4,3,9,8,6,7,1,3,7,9,6,1,2,4,8,5,4,8,3,9,7,1,5,2,6,1,6,2,5,8,4,9,3,7,9,5,7,2,3,6,8,1,4")
+    #     time.sleep(1)
+    #     self.driver.find_element_by_id("submit_form").click()
+    #     self.driver.implicitly_wait(5)
+    #     time.sleep(1)
+    #     result = self.driver.find_element_by_id("result")
+    #     self.assertEqual(result.text, 'fail')
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
