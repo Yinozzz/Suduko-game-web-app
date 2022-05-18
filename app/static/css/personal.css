@@ -1,14 +1,21 @@
-.container{
+.row {
     background-color: rgba(42, 44, 57, 0.9);
     height: 600px;
+    border:rgb(221, 82, 17) 5px outset;
+}
+.head_pic{
+    /* border-right-style: groove;
+    border-right-width: 5px; */
+    border-right: rgb(221, 82, 17) 5px outset;;
 }
 
 #current_avatar{
-    margin-left: 50px;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 20px;
     border-radius: 50px;
     border:rgb(221, 82, 17) 1px solid;
-    display: inline;
+    display: block;
     width: 250px;
     height: 250px;
 
@@ -18,23 +25,20 @@
 .user{
     color:rgba(221, 82, 17, 0.966);
     font-family: fantasy;
-    margin-left: 50px;
+    text-align: center;
 }
 
 /* upload pic */
 .head_pic_upload{
-    height: 100px;
-    display: inline-block;
-    margin-top: 20px;
+    text-align: center;
 }
 .head_pic_upload button{
     background-color:#ef6603;
     border-radius: 20px;
     padding:15px 60px;
     margin-top:10px;
-    margin-left: 40px;
     border:#ef6603 solid 1px;
-    position:fixed;
+
 }
 
 #upload_head_pic_form{
@@ -89,6 +93,8 @@
     border-radius: 20px;
     margin-top:10px;
     border:#4b1702ea solid 1px;
+    padding:10px 20px;
+    font-size: 20px;
 }
 
 /* rank information */
@@ -100,6 +106,12 @@
 }
 #rank_list{
     background-color: rgb(30, 33, 49);
-    border 1px solid white;
     border-collapse:collapse;
+    color:rgba(221, 82, 17, 0.966);
+    border:rgba(221, 82, 17, 0.966);
+    padding-left: 30px;
+
+}
+#rank_list tr:hover{
+    background-color: rgba(123, 133, 151, 0.836);
 }
