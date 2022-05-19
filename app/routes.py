@@ -16,16 +16,35 @@ import random
 
 @app.route('/')
 def index():
+    """
+    view function for index page
+    :return: render_template('index.html')
+    """
     return render_template('index.html')
 
 
 @app.route('/introduction')
 def introduction():
+    """
+    view for introduction page
+    :return: render_template('introduction.html')
+    """
     return render_template('introduction.html')
 
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
+    """
+    view function for register function.
+    GET:
+    render the register page
+    :return render_template('register.html')
+    POST:
+    Receive registration information, and achieve the register.
+    :return
+    if the registration is successful, jump to the login page.
+    if registration failed. reload the registration page
+    """
     if request.method == 'GET':
         return render_template('register.html')
     else:
@@ -49,6 +68,17 @@ def register():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    """
+        view function for login function.
+        GET:
+        render the login page
+        :return render_template(login.html')
+        POST:
+        Receive login information, and achieve the login function.
+        :return
+        if the login is successful, jump to the game page.
+        if login failed. reload the login page
+    """
     if request.method == 'GET':
         return render_template('login.html')
     else:
@@ -75,17 +105,36 @@ def login():
 
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():
+    """
+        view for logout function
+        :return: redirect(url_for('login'))
+    """
     session.clear()
     return redirect(url_for('login'))
 
 
 @app.route('/game', methods=['GET', 'POST'])
 def game():
+    """
+        view for game function
+        GET:
+        render the game page
+        :return: render_template('game.html', params)
+        POST:
+        Judge whether the game is successful
+        :return
+        if game is successful, return json.dumps(result_dict)
+        e.g. result_dict{"game_result":"congratulations!","rank_list":[]}
+        if game is fail, return json.dumps(result_dict)
+        e.g. result_dict{"game_result":"The answer does not match the Sudoku rules. Try again!","rank_list":[]}
+    """
     if request.method == "GET":
         game_bank_obj_old = GameBank.query.filter(GameBank.current_game != '').first()
+        # Change game every day
         # time_now = time.strftime("%Y%m%d%H%M%S", time.localtime())
         time_now = time.strftime("%Y%m%d", time.localtime())
         if game_bank_obj_old.current_game != time_now:
+            # if this game is today game, updata this game. If this is not today game, upload next game.
             game_bank_obj_old.current_game = ''
             db.session.merge(game_bank_obj_old)
             db.session.commit()
@@ -102,8 +151,7 @@ def game():
             game_bank_obj = game_bank_obj_next
         else:
             game_bank_obj = game_bank_obj_old
-
-        # random.seed(g.user.id)
+        # Randomly generate questions according to users.
         if g.user:
             random.seed(g.user.id)
             user_flag = g.user
@@ -114,6 +162,7 @@ def game():
             is_admin = 1
         random_list = random.sample(range(0, 81), 43)
 
+        # select the best mark of every gamer, and show the rank
         player_best_ranks = db.session.query(GameResult.playerId,
                                              func.min(GameResult.time_spent)).group_by(GameResult.playerId).order_by(
             GameResult.time_spent).all()
@@ -132,9 +181,10 @@ def game():
         data_string = request.get_json()
         listdata = data_string['game_string'].split(',')
         final_list = list()
+        # Convert input data into a two-dimensional list.
         for i in range(0, len(listdata), 9):
             final_list.append(listdata[i:i + 9])
-
+        # Judge whether there are duplicate values in each row and column.
         for i in range(len(final_list)):
             temp_col = list()
             for j in range(len(final_list)):
@@ -143,6 +193,7 @@ def game():
                 rows = False
             if len(temp_col) != len(set(temp_col)):
                 columns = False
+        # Judge whether there is data duplication in the sub grid
         for i in [1, 4, 7]:
             for j in [1, 4, 7]:
                 temp_grid = list()
@@ -158,6 +209,7 @@ def game():
                 if len(temp_grid) != len(set(temp_grid)):
                     grids = False
         if rows and columns and grids:
+            # successful
             start_time_obj = datetime.fromtimestamp(data_string['start_time'] / 1000)
             finish_time_obj = datetime.fromtimestamp(data_string['finish_time'] / 1000)
             time_diff = finish_time_obj - start_time_obj
@@ -183,6 +235,7 @@ def game():
             result_dict["rank_list"] = rank_list
             return json.dumps(result_dict)
         else:
+            # fail
             result_dict = dict()
             player_best_ranks = db.session.query(GameResult.playerId,
                                                  func.min(GameResult.time_spent)).group_by(GameResult.playerId).order_by(GameResult.time_spent).all()
@@ -224,6 +277,18 @@ def game():
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
+    """
+        view for upload function
+        GET:
+        render the upload page
+        :return: render_template('upload.html')
+        POST:
+        Judge whether the uploaded data is successful
+        :return
+        if uploaded data is successful, return "Uploaded successfully!"
+        if uploaded data is fail, return "Uploaded successfully!"
+        if uploaded data exits, return "the game already exits"
+    """
     if request.method == "GET":
         if g.user.user_type != 0:
             return render_template('rank.html')
@@ -277,7 +342,12 @@ def upload():
 
 @app.route('/personal', methods=['GET', 'POST'])
 def personal():
-    # current_user = request.args.get('id', 0)
+    """
+        view for personal function
+        GET:
+        render the personal page with personal information
+        :return: render_template('personal.html', params)
+    """
     result_dict = dict()
     if g.user:
         user_id = g.user.id
@@ -301,6 +371,12 @@ def personal():
 
 @app.route('/avatar', methods=['POST'])
 def avatar_upload():
+    """
+        view for change the head picture
+        POST:
+        receive the picture file, and return the new url of the picture
+        :return: the new head picture url
+    """
     temp_pic = request.files.get('headpic')
     if g.user:
         # temp_pic_path = os.path.join('./app/static/avatar'+random_name+'.jpg')
