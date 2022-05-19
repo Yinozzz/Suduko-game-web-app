@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
     <head>
         <title>base page</title>
         <meta charset="utf-8">
@@ -15,7 +15,7 @@
         {% endif %}
     </head>
     <body>
-    <section id="title">
+    <div id="title">
         <nav class="navbar navbar-expand-md fixed-top navbar-dark">
           <div class="container-fluid">
             <a class="navbar-brand" href="#">Logo</a>
@@ -48,12 +48,12 @@
         </nav>
 
 
-    </section>
-    <section style="padding-top:80px;">
+      </div>
+    <div style="padding-top:80px;">
 
                 {% block content %}{% endblock %}
 
-    </section>
+    </div>
 
 <!--        {% with messages = get_flashed_messages() %}-->
 <!--        {% if messages %}-->
