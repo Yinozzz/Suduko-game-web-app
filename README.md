@@ -1,8 +1,13 @@
 # Project2
 
 ## Perpose and Design
-We hope to realize Sudoku, an interesting game in this project. I hope people who play our games can find happiness and sense of achievement in our games. We have register, login, logout, personal game records and rank functions in our Sukoku
+We hope to realize Sudoku, an interesting game in this project. I hope people who play our games can find happiness and sense of achievement in our games. We have register, login, logout, upload game, personal game records and rank functions in our Sukoku
 game. 
+In this game, only administrator can upload the game. Default administrator is "admin" and the password is "123456". When admin enter in
+the game page, there is a upload button. Admin can upload the new game by input each number in each table, like a real Sudoku game, or,
+admin can input a string with numbers separated by ','.
+There is some string for testing.
+"8,1,7,6,5,9,4,2,3,6,5,3,4,2,8,7,1,9,4,2,9,3,1,7,6,8,5,7,8,2,5,4,6,9,3,1,,3,6,5,7,9,1,8,4,2,9,4,1,2,8,3,5,6,7,2,9,6,1,7,4,3,5,8,1,3,8,9,6,5,2,7,4,5,7,4,8,3,2,1,9,6"
 
 ## Architecture
 ```
