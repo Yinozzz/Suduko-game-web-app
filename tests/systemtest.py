@@ -2,6 +2,7 @@ import unittest, os, time
 from app import app, db
 from app.models import User, GameResult, GameBank
 from selenium import webdriver
+from datetime import date
 
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -29,6 +30,8 @@ class SystemTest(unittest.TestCase):
         else:
             db.init_app(app)
             db.create_all()
+            game = GameBank(uploaderId=1, game=test_game1, upload_time=date.fromtimestamp(time.time()), current_game='1')
+            db.session.add(game)
             db.session.commit()
 
             self.driver.maximize_window()
@@ -47,18 +50,19 @@ class SystemTest(unittest.TestCase):
     def test_registion_login(self):
         self.driver.get('http://localhost:5000/register')
         self.driver.implicitly_wait(5)
-        self.driver.find_element_by_id("register_username").send_keys('Jija')
-        self.driver.find_element_by_id("password-field").send_keys('129378')
-        self.driver.find_element_by_id("register_button").click()
+        self.driver.find_element("id", "register_username").send_keys('Jija')
+        self.driver.find_element("id", "password-field").send_keys('129378')
+        self.driver.find_element("id", "register_button").click()
         time.sleep(1)
         page = self.driver.current_url
         self.assertEqual(page, 'http://localhost:5000/login', msg="Successful registion")
 
-        self.driver.find_element_by_id("login_username").send_keys('Jija')
-        self.driver.find_element_by_id("password-field").send_keys('129378')
-        self.driver.find_element_by_id("login_button").click()
+        self.driver.find_element("id", "login_username").send_keys('Jija')
+        self.driver.find_element("id", "password-field").send_keys('129378')
+        self.driver.find_element("id","login_button").click()
         time.sleep(2)
-        result = self.driver.find_element_by_id("logout")
+
+        result = self.driver.find_element("id", "logout")
         self.assertEqual(result.get_attribute('innerHTML'), "logout", msg="Successful login")
 
 
