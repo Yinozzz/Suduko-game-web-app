@@ -1,5 +1,5 @@
 import unittest, os, time
-from app import app,db
+from app import app, db
 from app.models import User, GameResult, GameBank
 from selenium import webdriver
 
