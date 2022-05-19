@@ -1,5 +1,65 @@
 # Project2
 
+## Perpose and Design
+We hope to realize Sudoku, an interesting game in this project. I hope people who play our games can find happiness and sense of achievement in our games. We have register, login, logout, personal game records and rank functions in our Sukoku
+game. 
+
+## Architecture
+```
+.
+├── forms.py
+├── __init__.py
+├── models.py
+├── __pycache__
+│   ├── forms.cpython-38.pyc
+│   ├── __init__.cpython-38.pyc
+│   ├── models.cpython-38.pyc
+│   └── routes.cpython-38.pyc
+├── routes.py
+├── static
+│   ├── avatar120220519144314.jpg
+│   ├── avatar120220519144403.jpg
+│   ├── avatar320220519023147.jpg
+│   ├── bg2.jpg
+│   ├── bg.png
+│   ├── css
+│   │   ├── bootstrap.min.css
+│   │   ├── bootstrap.min.css.map
+│   │   ├── game.css
+│   │   ├── index.css
+│   │   ├── introduction.css
+│   │   ├── login.css
+│   │   ├── personal.css
+│   │   └── style.css
+│   ├── default_head_pic.jpg
+│   ├── js
+│   │   ├── bootstrap.min.js
+│   │   ├── game.js
+│   │   ├── jquery-3.6.0.js
+│   │   ├── jquery.js
+│   │   ├── personal.js
+│   │   └── upload.js
+│   ├── sudoku1.jpg
+│   └── sudoku.png
+└── templates
+    ├── base.html
+    ├── game.html
+    ├── index.html
+    ├── introduction.html
+    ├── login.html
+    ├── personal.html
+    ├── rank.html
+    ├── register.html
+    └── upload.html
+
+5 directories, 39 files
+```
+We have the static directory, the templates directory, the __init__.py, the forms.py, the models.py and the routes.py.
+In the static, there are Javascript code files, CSS code files and some picture sources.
+In the templates, there are nine HTML files as templates for flask. And the init.py is used to initial the application. 
+The forms.py is used to declare the form submission. The models.py is used to declare the structure of the database. 
+Finally, the routes.py is the views file that is backend API of the flask project.
+
 ## Prerequisites
 Requires python3, flask, venv, and sqlite
 ### install python3
