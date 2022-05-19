@@ -18,7 +18,7 @@ h1 {
 }
 
 #game_table {
-    border:1;
+    border:1px;
     border-collapse: collapse;
     margin-left: 25%;
     background-color: white;
@@ -46,7 +46,7 @@ td {
 }
 
 .button {
-    align: center;
+    text-align: center;
 }
 #start_button, #submit_table, #submit_form,#upload_button, #start_button_no_user{
     background-color:#ef6603;
