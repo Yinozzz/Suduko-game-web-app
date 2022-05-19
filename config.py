@@ -8,9 +8,6 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
-# class TestingConfig(Config):
-#     ENV = 'testing'
-#     SQLALCHEMY_DATABASE_URI = 'sqlite:///'+os.path.join(basedir, 'tests/test.db')
 class Test_Config(Config):
     # TESTING = True
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
