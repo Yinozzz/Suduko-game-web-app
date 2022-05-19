@@ -1,12 +1,5 @@
-// function show_upload_form(){
-//     is_display = document.getElementById("upload_head_pic_form").style.display
-//     if (is_display == 'block')
-//         document.getElementById("upload_head_pic_form").style.display="none"
-//     else{
-//         document.getElementById("upload_head_pic_form").style.display="block"
-//     }
-// }
 
+//head pic upload
 $(document).ready(function(){
     $('#upload_head_pic_form').submit(function(e){
         e.preventDefault();
@@ -33,7 +26,7 @@ $(document).ready(function(){
 });
 
 
-
+//upload window
 var btn = document.getElementById('open_button');
 var div = document.getElementById('background');
 var form=document.getElementById('upload_head_pic_form')

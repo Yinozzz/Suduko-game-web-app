@@ -8,6 +8,7 @@ function load_function(url, data, call_func){
     xhttp.send(JSON.stringify(data));
 }
 
+//get input game information from table
 function get_table_num(){
     table = document.getElementById("upload_table")
     data_string = ''
@@ -32,8 +33,7 @@ function get_table_num(){
         }
     }
 
-//    document.getElementById("number").value = data_string.slice(0,-1)
-//    document.getElementById("gameform").submit()
+
 
     var game_info = {"game_string":data_string.slice(0,-1)}
     var upload_url = "http://127.0.0.1:5000/upload"
@@ -45,6 +45,7 @@ function get_table_num(){
     })
 }
 
+//get input game information from input string
 function get_input_num(){
     // form = document.getElementById("getGameString")
     var regexp_string = /^([1-9],){80}[1-9]$/;

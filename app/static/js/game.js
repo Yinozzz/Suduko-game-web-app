@@ -12,7 +12,7 @@ function load_function(url, data, call_func){
     xhttp.send(JSON.stringify(data));
 }
 
-
+//Get user's  input number
 function get_table_num(){
     var data_obj = new Date()
     finish_time = data_obj.getTime()
@@ -38,8 +38,7 @@ function get_table_num(){
         }
     }
 
-//    document.getElementById("number").value = data_string.slice(0,-1)
-//    document.getElementById("gameform").submit()
+
 
     var game_info = {"start_time": start_time, "finish_time":finish_time, "game_string":data_string.slice(0,-1)}
     var game_url = "http://127.0.0.1:5000/game"
@@ -72,6 +71,7 @@ function get_table_num(){
     })
 }
 
+// game start
 function start_game(){
     var data_obj = new Date()
     start_time = data_obj.getTime()
