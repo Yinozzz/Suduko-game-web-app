@@ -179,7 +179,7 @@ def game():
                 temp_dict["best_mark"] = player_best_ranks[i][1]
                 temp_dict["rank"] = i + 1
                 rank_list.append(temp_dict)
-            result_dict["game_result"] = "success"
+            result_dict["game_result"] = "congratulations!"
             result_dict["rank_list"] = rank_list
             return json.dumps(result_dict)
         else:
@@ -194,7 +194,7 @@ def game():
                 temp_dict["rank"] = i + 1
                 rank_list.append(temp_dict)
             # rank_json = json.dumps(rank_dict)
-            result_dict["game_result"] = "fail"
+            result_dict["game_result"] = "The answer does not match the Sudoku rules. Try again!"
             result_dict["rank_list"] = rank_list
             return json.dumps(result_dict)
 
@@ -270,9 +270,9 @@ def upload():
             else:
                 db.session.add(input_db_data)
                 db.session.commit()
-                return "success"
+                return "Uploaded successfully!"
         else:
-            return "fail"
+            return "The uploaded content does not meet the Sudoku rules!"
 
 
 @app.route('/personal', methods=['GET', 'POST'])

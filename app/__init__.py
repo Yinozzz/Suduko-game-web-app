@@ -8,8 +8,8 @@ from datetime import date
 from werkzeug.security import generate_password_hash
 
 app = Flask(__name__)
-# app.config.from_object(Config)
-app.config.from_object(Test_Config_Unit)
+app.config.from_object(Config)
+# app.config.from_object(Test_Config_Unit)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
@@ -68,6 +68,7 @@ def before_first_request():
                                         current_game='')
             db.session.add(default_game)
             db.session.commit()
+            session.clear()
 
 
 from app import routes, models
