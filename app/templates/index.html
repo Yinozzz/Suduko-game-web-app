@@ -20,14 +20,12 @@
                                     Sudoku is a logic-based, combinatorial number-placement puzzle. In classic Sudoku, the objective is to fill a 9 × 9 grid with digits so that each column, each row, and each of the nine 3 × 3 subgrids that compose the grid (also called "boxes", "blocks", or "regions") contain all of the digits from 1 to 9. The puzzle setter provides a partially completed grid, which for a well-posed puzzle has a single solution.
                                 </p>
                                 <div style="margin-left: 150px;">
-                                    <a href="{{ url_for('introduction') }}"><button type="button" class="slide-btn">learn more</button></a>
-
+                                            <a href="{{ url_for('introduction') }}" class="slide-btn">learn more</a>
                                             {% if user %}
-                                            <a href="{{ url_for('game') }}"><button type="button" class="slide-btn">get started</button></a>
+                                            <a href="{{ url_for('game') }}" class="slide-btn">get started</a>
                                             {% else %}
-                                            <a href="{{ url_for('login') }}"><button type="button" class="slide-btn">get started</button></a>
+                                            <a href="{{ url_for('login') }}" class="slide-btn">get started</a>
                                             {% endif %}
-
                                 </div>
                             </div>
                         </div>
@@ -40,12 +38,12 @@
                                         Although the 9×9 grid with 3×3 regions is by far the most common, many other variations exist. Sample puzzles can be 4×4 grids with 2×2 regions; 5×5 grids with pentomino regions have been published under the name Logi-5; the World Puzzle Championship has featured a 6×6 grid with 2×3 regions and a 7×7 grid with six heptomino regions and a disjoint region. 
                                     </p>
                                     <div style="margin-left: 150px;">
-                                        <a href="{{ url_for('introduction') }}"><button type="button" class="slide-btn">learn more</button></a>
-                                                {% if user %}
-                                                <a href="{{ url_for('game') }}"><button type="button" class="slide-btn">get started</button></a>
-                                                {% else %}
-                                                <a href="{{ url_for('login') }}"><button type="button" class="slide-btn">get started</button></a>
-                                                {% endif %}
+                                        <a href="{{ url_for('introduction') }}" class="slide-btn">learn more</a>
+                                        {% if user %}
+                                        <a href="{{ url_for('game') }}" class="slide-btn">get started</a>
+                                        {% else %}
+                                        <a href="{{ url_for('login') }}" class="slide-btn">get started</a>
+                                        {% endif %}
                                     </div>
                                 </div><!-- /.single-slide-item-content-->
                         </div><!-- /.single-slide-item-->
