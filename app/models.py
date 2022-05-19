@@ -17,7 +17,8 @@ class User(db.Model):
             'id': self.id,
             'username': self.username,
             'password': self.password,
-            'user_type': self.user_type
+            'user_type': self.user_type,
+            'head_pic_url': self.head_pic_url
         }
         return data
 
@@ -42,6 +43,7 @@ class GameBank(db.Model):
     game = db.Column(db.String, unique=True, nullable=False)
     uploaderId = db.Column(db.Integer, db.ForeignKey("user.id"))
     upload_time = db.Column(db.DateTime)
+    current_game = db.Column(db.String, nullable=False)
 
     uploader = db.relationship("User", backref="upload_games")
 

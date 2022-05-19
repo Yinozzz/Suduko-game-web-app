@@ -82,7 +82,27 @@ def logout():
 @app.route('/game', methods=['GET', 'POST'])
 def game():
     if request.method == "GET":
-        game_bank_obj = GameBank.query.filter(GameBank.id == 1).first()
+        game_bank_obj_old = GameBank.query.filter(GameBank.current_game != '').first()
+        # time_now = time.strftime("%Y%m%d%H%M%S", time.localtime())
+        time_now = time.strftime("%Y%m%d", time.localtime())
+        if game_bank_obj_old.current_game != time_now:
+            game_bank_obj_old.current_game = ''
+            db.session.merge(game_bank_obj_old)
+            db.session.commit()
+            game_bank_obj_next = GameBank.query.filter(GameBank.id == game_bank_obj_old.id+1).first()
+            if game_bank_obj_next:
+                game_bank_obj_next.current_game = time_now
+                db.session.merge(game_bank_obj_next)
+                db.session.commit()
+            else:
+                game_bank_obj_next = GameBank.query.filter(GameBank.id == 1).first()
+                game_bank_obj_next.current_game = time_now
+                db.session.merge(game_bank_obj_next)
+                db.session.commit()
+            game_bank_obj = game_bank_obj_next
+        else:
+            game_bank_obj = game_bank_obj_old
+
         # random.seed(g.user.id)
         if g.user:
             random.seed(g.user.id)
