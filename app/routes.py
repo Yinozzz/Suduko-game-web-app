@@ -112,7 +112,7 @@ def game():
             random.seed(1)
             user_flag = None
             is_admin = 1
-        random_list = random.sample(range(0, 81), 80)
+        random_list = random.sample(range(0, 81), 43)
 
         player_best_ranks = db.session.query(GameResult.playerId,
                                              func.min(GameResult.time_spent)).group_by(GameResult.playerId).order_by(

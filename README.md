@@ -8,7 +8,7 @@ the game page, there is a upload button. Admin can upload the new game by input 
 admin can input a string with numbers separated by ','.
 There is some string for testing.
 "8,1,7,6,5,9,4,2,3,6,5,3,4,2,8,7,1,9,4,2,9,3,1,7,6,8,5,7,8,2,5,4,6,9,3,1,3,6,5,7,9,1,8,4,2,9,4,1,2,8,3,5,6,7,2,9,6,1,7,4,3,5,8,1,3,8,9,6,5,2,7,4,5,7,4,8,3,2,1,9,6"
-
+The string has a total of 81 digits, and each of the nine digits is a row in the game for a total of nine rows.
 ## Architecture
 ```
 .
@@ -147,15 +147,31 @@ TOTAL                 334     44    87%
 ```
 
 ### 2.System test
+set the code of `./app/__init__.py` like that
+```
+# app.config.from_object(Config)
+app.config.from_object(Test_Config_Unit)
+```
+then run `python3 -m tests.systemtest` in the project root directory to run the selenium test, the result will show:
+```
+----------------------------------------------------------------------
+Ran 1 test in 8.002s
 
-
+OK
+```
+Then change the code of `./app/__init__.py` to:
+```
+app.config.from_object(Config)
+# app.config.from_object(Test_Config_Unit)
+```
+and then run the app again.
 ## Contribution
 
 ### Changhao Liu contribution review
 My partner and I are jointly responsible for the topic selection, design,  development and testing of this project. In the development stage, I was mainly responsible for the back-end code development of login registration and personal page, as well as the front-end code development of the game interface. In addition, my partner and I were responsible for the debugging and testing of the code together. In the testing step, I was mainly responsible for the unit test.
 
 ### Yinuo Zhao contribution review
-
+I am mainly responsible for the front-end development of index, base, introduction, login, registration and personal page, as well as the back-end development of game uploading. Both of us participate in selecting topics, designing, debugging and testing the project. I mainly do the system test with selenium.
 ### github commit log
 ```
 commit e27a2c10a21e888a57f331b46ab82f6350dfef02
