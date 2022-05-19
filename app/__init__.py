@@ -1,6 +1,6 @@
 from flask import Flask, session, g
 
-from config import Config, Test_Config_Unit
+from config import Config, Test_Config_Unit, Test_Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import time
@@ -8,9 +8,9 @@ from datetime import date
 from werkzeug.security import generate_password_hash
 
 app = Flask(__name__)
-app.config.from_object(Config)
+# app.config.from_object(Config)
 # app.config.from_object(Test_Config)
-# app.config.from_object(Test_Config_Unit)
+app.config.from_object(Test_Config_Unit)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
