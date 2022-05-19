@@ -263,7 +263,8 @@ def upload():
         if rows and columns and grids:
             input_db_data = GameBank(game=data_string['game_string'],
                                      uploaderId=g.user.id,
-                                     upload_time=date.fromtimestamp(time.time()))
+                                     upload_time=date.fromtimestamp(time.time()),
+                                     current_game='')
             if GameBank.query.filter(GameBank.game==data_string['game_string']).first():
                 return "the game already exits"
             else:

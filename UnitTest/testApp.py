@@ -6,13 +6,13 @@ from datetime import date
 from werkzeug.security import generate_password_hash
 
 from app import app, db
-from Unitest_config import Test_Config
+from config import Test_Config_Unit
 from app.models import GameResult, User, GameBank
 
 
 class TestAPP(unittest.TestCase):
     def setUp(self):
-        app.config.from_object(Test_Config)
+        # app.config.from_object(Test_Config_Unit)
         self.app = app
         self.client = self.app.test_client()
         db.create_all()
@@ -24,8 +24,14 @@ class TestAPP(unittest.TestCase):
                          head_pic_url='./static/default_head_pic.jpg')
             db.session.add(admin)
             db.session.commit()
+        if User.query.filter(User.username == 'new').first() is None:
+            new = User(username='new', password=generate_password_hash('123456'), user_type=0,
+                         head_pic_url='./static/default_head_pic.jpg')
+            db.session.add(new)
+            db.session.commit()
         if GameBank.query.filter(GameBank.game == default1).first() is None:
-            default_game = GameBank(uploaderId=1, game=default1, upload_time=date.fromtimestamp(time.time()))
+            default_game = GameBank(uploaderId=1, game=default1,
+                                    upload_time=date.fromtimestamp(time.time()), current_game='1')
             db.session.add(default_game)
             db.session.commit()
         if GameResult.query.filter(GameResult.id == 1).first() is None:
