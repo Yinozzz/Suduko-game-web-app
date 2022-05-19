@@ -60,6 +60,10 @@ td {
     box-shadow:  0 12px 16px rgba(185, 118, 182, 0.712), 0 17px 20px rgba(176, 151, 184, 0.418);
 }
 
+#result {
+    color: white;
+}
+
 .rank {
     background-color: rgba(42, 44, 57, 0.9);
 }
