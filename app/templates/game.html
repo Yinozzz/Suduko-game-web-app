@@ -1,21 +1,14 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Game</title>
-    <script src="static/js/game.js"></script>
-    <link href="static/css/game.css" rel="stylesheet">
-</head>
-<body>
+
     {% extends "base.html" %}
     {% block content %}
+    <script src="static/js/game.js"></script>
+    <link href="static/css/game.css" rel="stylesheet">
     <div class="container-xxl">
   <!-- Stack the columns on mobile by making one full-width and the other half-width -->
       <div class="row">
         <div class="col-lg-8 game" >
             <h1>game</h1>
-                <table id="game_table" border="1">
+                <table id="game_table">
                      {% for num in [0,9,18,27,36,45,54,63,72] %}
                         <tr>
                             {% for j in [0,1,2,3,4,5,6,7,8] %}
@@ -32,7 +25,7 @@
 <!--            <input id="number" name="number_string" type="text" value="">-->
 <!--        </form>-->
             <div id="result"></div>
-        <div class="button" align="center">
+        <div class="button">
             {% if user_flag %}
                 <button  id="start_button" onclick="start_game()" >start</button>
             {% else %}
@@ -65,5 +58,4 @@
 <!--    <canvas id="canvas"></canvas>-->
 <!--  </div>-->
     {% endblock %}
-</body>
 </html>

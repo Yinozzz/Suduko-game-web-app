@@ -26,9 +26,9 @@
 	padding-left: 50px;
 }
 
-.slide_item button.slide-btn,
-.slide_item  button:active .slide-btn ,
-.slide_item button:focus .slide-btn{
+.slide_item a.slide-btn,
+.slide_item  a:active .slide-btn ,
+.slide_item a:focus .slide-btn{
 	display: inline-block;
     background: rgba(221, 82, 17, 0.966);
     padding: 17px 50px;
@@ -49,7 +49,7 @@
 	-o-transition:.5s;
     transition: .5s;
 }
-.slide_item  button.slide-btn:hover{
+.slide_item  a.slide-btn:hover{
 	 background: transparent;
 	 color: #fff;
 	 border: 1px solid #fff;
