@@ -6,11 +6,13 @@
     <script src="static/js/bootstrap.min.js"></script>
     <section class="introduction" style="height:600px">
         <div class="container">
+            <!-- Carousel Slides -->
             <div id="index_carousel"class="carousel slide carousel-fade" data-bs-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-bs-target="#index_carousel" data-bs-slide-to="0" class="active"></li>
                     <li data-bs-target="#index_carousel" data-bs-slide-to="1"></li>
                 </ol>
+
                 <div class="carousel-inner" role="listbox">
                     <div class="carousel-item active" data-bs-interval="8000">
                         <div class="slide_item slide1">
@@ -45,12 +47,11 @@
                                         <a href="{{ url_for('login') }}" class="slide-btn">get started</a>
                                         {% endif %}
                                     </div>
-                                </div><!-- /.single-slide-item-content-->
-                        </div><!-- /.single-slide-item-->
-                    </div><!-- /.item .active-->
+                                </div>
+                        </div>
+                    </div>
     
                 </div>
-                <!-- Controls -->
                 <a class="left carousel-control-prev" href="#index_carousel" role="button" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon"></span>
                 </a>

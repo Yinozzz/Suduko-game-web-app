@@ -22,11 +22,12 @@
   color: #fff;
   width: 100%; 
  }
-  .login-wrap h3 {
-    font-weight: 300;
-    color: #fff; 
-  }
+.login-wrap h3 {
+  font-weight: 300;
+  color: #fff; 
+}
 
+/* check box */
 .checkbox-wrap {
   display: block;
   position: relative;
@@ -48,7 +49,7 @@
   color: #000 !important; 
 }
 
-  .form-control {
+.form-control {
   background: transparent;
   border: none;
   height: 50px;
@@ -60,21 +61,21 @@
   padding-right: 20px;
 }
 
-  .form-control:hover, .form-control:focus {
-    background: transparent;
-    outline: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    border-color: rgba(255, 255, 255, 0.4); }
-  .form-control:focus {
-    border-color: rgba(255, 255, 255, 0.4); }
-  
-  .form-control::placeholder{
-    color:white;
-  }
+.form-control:hover, .form-control:focus {
+  background: transparent;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-color: rgba(255, 255, 255, 0.4); }
+.form-control:focus {
+  border-color: rgba(255, 255, 255, 0.4); }
 
-  .form-control:focus {
-    background-color: transparent;
-    border-color: rgba(221, 82, 17, 0.966);
-    outline: 0;
-  }
+.form-control::placeholder{
+  color:white;
+}
+
+.form-control:focus {
+  background-color: transparent;
+  border-color: rgba(221, 82, 17, 0.966);
+  outline: 0;
+}

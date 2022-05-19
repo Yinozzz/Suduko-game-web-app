@@ -75,7 +75,7 @@
 	content:'';
 	z-index:-1;
 }
-/* .slide_item */
+
 
 /* .carousel-indicators */
 .carousel-indicators {
@@ -99,5 +99,5 @@
 .carousel-control-prev, .carousel-control-next {
 	width:50px !important;
 }
-/* .carousel-indicators */
+
 

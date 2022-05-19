@@ -8,11 +8,8 @@ h1 {
     color:#ef6603;
 }
 
-/* [class*="col-"]{
-    padding: 20px;
 
-} */
-
+/* Game */
 #number{
     display: none;
 }
@@ -64,6 +61,7 @@ td {
     color: white;
 }
 
+/* Rank List */
 .rank {
     background-color: rgba(42, 44, 57, 0.9);
 }
@@ -71,17 +69,4 @@ td {
 .rank ul li {
     color: white;
     list-style: none;
-}
-
-.background{
-    display: none;
-	position: fixed;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0);
-}
-#canvas{
-    background:#000;
 }
