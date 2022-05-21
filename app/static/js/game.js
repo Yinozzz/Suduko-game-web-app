@@ -1,3 +1,28 @@
+// count second
+var second;
+second=0;
+
+var clock;
+
+function startTimer()
+{
+    clock=setInterval(timer,1000);
+}
+
+function stopTimer() {
+    clearInterval(clock);
+    document.getElementById('sclock').innerHTML=second+'s';
+}
+
+function timer(){
+    second++;
+    document.getElementById('sclock').innerHTML=second+'s';
+}
+
+
+
+
+
 var start_time = 0
 var finish_time = 0
 
@@ -45,6 +70,7 @@ function get_table_num(){
     load_function(game_url, game_info, function(){
         if (xhttp.status==200)
         {
+            stopTimer()
             console.log(this.responseText)
             result_json = JSON.parse(this.responseText)
             console.log(result_json)
@@ -58,7 +84,6 @@ function get_table_num(){
                 }
                 document.getElementById("submit_table").style.display="none"
             }
-
 
             $("#rank_ul").empty();
             for (var i=0; i<result_json['rank_list'].length && i <= 14;i++){
@@ -84,3 +109,5 @@ function start_game(){
         document.getElementById("start_button_no_user").style.display="none"
     }
 }
+
+

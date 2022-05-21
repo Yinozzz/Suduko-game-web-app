@@ -8,6 +8,9 @@ h1 {
     color:#ef6603;
 }
 
+#sclock {
+    color:#ef6603;
+}
 
 /* Game */
 #number{
@@ -32,7 +35,7 @@ h1 {
 
 .game {
     background-color: rgba(42, 44, 57, 0.9);
-    height:600px;
+    height:650px;
     text-align:center;
 }
 

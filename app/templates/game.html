@@ -8,6 +8,7 @@
         <div class="col-lg-8 game" >
             <!-- game table -->
             <h1>game</h1>
+            <p id="sclock">Timer</p>
                 <table id="game_table">
                      {% for num in [0,9,18,27,36,45,54,63,72] %}
                         <tr>
@@ -24,7 +25,7 @@
             <div id="result"></div>
             <div class="button">
             {% if user_flag %}
-                <button  id="start_button" onclick="start_game()" >start</button>
+                <button  id="start_button" onclick="start_game(); startTimer()" >start</button>
             {% else %}
                 <button  id="start_button_no_user" onclick="javascript:window.location.href='/login'" >start</button>
             {% endif %}
