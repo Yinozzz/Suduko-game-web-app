@@ -65,7 +65,7 @@ function get_table_num(){
 
 
 
-    var game_info = {"start_time": start_time, "finish_time":finish_time, "game_string":data_string.slice(0,-1)}
+    var game_info = {"start_time": start_time, "finish_time":finish_time, "game_string":data_string.slice(0,-1), "timer":second}
     var game_url = "http://127.0.0.1:5000/game"
     load_function(game_url, game_info, function(){
         if (xhttp.status==200)

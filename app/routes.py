@@ -212,12 +212,12 @@ def game():
             # successful
             start_time_obj = datetime.fromtimestamp(data_string['start_time'] / 1000)
             finish_time_obj = datetime.fromtimestamp(data_string['finish_time'] / 1000)
-            time_diff = finish_time_obj - start_time_obj
+            time_diff = data_string["timer"]
 
             input_db_data = GameResult(playerId=g.user.id,
                                        start_time=datetime.strftime(start_time_obj, '%Y-%m-%d %H:%M:%S'),
                                        finish_time=datetime.strftime(finish_time_obj, '%Y-%m-%d %H:%M:%S'),
-                                       time_spent=time_diff.seconds)
+                                       time_spent=time_diff)
             db.session.add(input_db_data)
             db.session.commit()
 
