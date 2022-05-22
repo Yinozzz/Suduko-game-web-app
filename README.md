@@ -74,7 +74,7 @@ Requires python3, flask, venv, and sqlite
 `sudo apt-get install python-virtualenv`
 
 ### install pip
-`sudo apt install python-pip`
+`sudo apt install python3-pip`
 
 ### install flask
 `pip install Flask`
