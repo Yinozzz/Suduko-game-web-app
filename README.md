@@ -87,13 +87,15 @@ Clone the project from the github: `git clone git@github.com:Changhao029/Project
 
 Enter the project directory: `cd cd Project2`
 
-Create the python virtual environment: `python3 -m venv venv`.
+Create the python virtual environment: `python3 -m venv venv`
 
-Activate the python virtual enviroment: `source ./venv/bin/activate`.
+Activate the python virtual enviroment: `source ./venv/bin/activate`
 
 Install all the requirements from the requirements.txt file: `pip install -r requirements.txt`
 
 Initial the database: 
+
+(For test we have uploaded a database file 'project2.db', so if you just want to run the project, you could skip this init to 'flask run')
 
 `flask db init`
 
@@ -103,7 +105,7 @@ Initial the database:
 
 To run the app: `flask run`.
 
-To stop the app: Use ctrl and C.
+To stop the app: Use 'ctrl+ C'.
 
 To exit the environment: `deactivate`
 
@@ -166,14 +168,176 @@ app.config.from_object(Config)
 ```
 and then run the app again.
 ## Contribution
-
+We each contributed about 50% to the project.
 ### Changhao Liu contribution review
 My partner and I are jointly responsible for the topic selection, design,  development and testing of this project. In the development stage, I was mainly responsible for the back-end code development of login registration and personal page, as well as the front-end code development of the game interface. In addition, my partner and I were responsible for the debugging and testing of the code together. In the testing step, I was mainly responsible for the unit test.
 
 ### Yinuo Zhao contribution review
 I am mainly responsible for the front-end development of index, base, introduction, login, registration and personal page, as well as the back-end development of game uploading. Both of us participate in selecting topics, designing, debugging and testing the project. I mainly do the system test with selenium.
+
 ### github commit log
 ```
+commit 121f5f20785389244cdafefa52538c6ccece9b83
+Author: liu <22924454@student.uwa.edu.au>
+Date:   Mon May 23 00:47:09 2022 +0800
+
+    add test db
+
+commit 729776219da904eacbab7420c3167a1809e802dd
+Author: liu <22924454@student.uwa.edu.au>
+Date:   Mon May 23 00:42:39 2022 +0800
+
+    add test db
+
+commit cee0da8dc701b1dddbe92ec331d91ff6c7ea10e8
+Merge: 151639e 784c20b
+Author: Yino <526319623@qq.com>
+Date:   Mon May 23 00:40:18 2022 +0800
+
+    Merge branch 'main' of github.com:Changhao029/Project2 into main
+
+commit 151639e47071e96f8a3b36e000449c6234a98531
+Author: Yino <526319623@qq.com>
+Date:   Mon May 23 00:39:55 2022 +0800
+
+    debug for html
+
+commit 784c20bb76948d73a889ce12581d3801b9f205cc
+Author: liu <22924454@student.uwa.edu.au>
+Date:   Sun May 22 01:13:37 2022 +0800
+
+    add timer backend
+
+commit 44d0811c57784d3545e69944f5e02d251c27f8f7
+Author: Yino <526319623@qq.com>
+Date:   Sun May 22 01:01:54 2022 +0800
+
+    add second timer to game.html
+
+commit 861d091a6462d0d6f704de4aedf9c4661626137d
+Merge: 60a65e5 1c4ddbc
+Author: Yino <526319623@qq.com>
+Date:   Sun May 22 00:17:18 2022 +0800
+
+    Merge branch 'main' of github.com:Changhao029/Project2 into main
+
+commit 60a65e5c76452c53c689f5f7169fcf5724773b95
+Author: Yino <526319623@qq.com>
+Date:   Sun May 22 00:16:57 2022 +0800
+
+    delete unused parameter and modify the page title
+
+commit 1c4ddbc718e208849443cb9fd32ca4a9eb2e9540
+Author: liu <22924454@student.uwa.edu.au>
+Date:   Fri May 20 01:01:27 2022 +0800
+
+    comment for models
+
+commit e78b2068436033b0849840651becd4b0e251b8b4
+Author: liu <22924454@student.uwa.edu.au>
+Date:   Fri May 20 00:52:48 2022 +0800
+
+    comment for view functions
+
+commit b5f5bad3eaf59596ae9233b3e223de07300cb14a
+Author: Yino <526319623@qq.com>
+Date:   Fri May 20 00:49:47 2022 +0800
+
+    complete comments for js
+
+commit 987abb01d62d32d5298807f70e2b6ffa43652987
+Author: Yino <526319623@qq.com>
+Date:   Fri May 20 00:45:09 2022 +0800
+
+    complete comments
+
+commit 3d12f0235bb210d2c6f755c9d7b9aba9508e566c
+Author: liu <22924454@student.uwa.edu.au>
+Date:   Fri May 20 00:08:52 2022 +0800
+
+    fix small problems
+
+commit f0dd0ed46a6fc4e29b52be4fcf6b320cf057e3f2
+Author: Yino <526319623@qq.com>
+Date:   Thu May 19 23:57:46 2022 +0800
+
+    Finish README and solve some little problems
+
+commit 1796a916f6d12cc4fbc990f40103a781276288ab
+Author: liu <22924454@student.uwa.edu.au>
+Date:   Thu May 19 19:55:20 2022 +0800
+
+    readme
+
+commit eab1266718d6f62c06417676839a6fc220f62d16
+Author: liu <22924454@student.uwa.edu.au>
+Date:   Thu May 19 19:54:15 2022 +0800
+
+    readme
+
+commit 6a0b4e44b45df05ae44a62770b9a80288d41e264
+Merge: 769cd90 33d4937
+Author: liu <22924454@student.uwa.edu.au>
+Date:   Thu May 19 19:54:07 2022 +0800
+
+    Merge branch 'main' of github.com:Changhao029/Project2 into main
+
+commit 33d4937ce83b22b9c7d75334487b079d9272d4f4
+Author: Yino <526319623@qq.com>
+Date:   Thu May 19 19:47:11 2022 +0800
+
+    solve the version conflict of selenium's find_element_by_id() function in systemtest
+
+commit 769cd9091292939958630486aa66a5cc24452f71
+Author: liu <22924454@student.uwa.edu.au>
+Date:   Thu May 19 19:42:35 2022 +0800
+
+    readme
+
+commit c56fa5ea1eb8f4aff306f4c869d70c1812c492c3
+Author: Yino <526319623@qq.com>
+Date:   Thu May 19 19:30:02 2022 +0800
+
+    debug systemtest
+
+commit 2e7b3d97b6d4ce19e79af72d97bafa59d3599940
+Merge: f40d7fb 25d4ee2
+Author: Yino <526319623@qq.com>
+Date:   Thu May 19 19:10:44 2022 +0800
+
+    Merge remote-tracking branch 'origin/main' into main
+
+commit f40d7fb21d9f979edf76631b0fef10a88d832aee
+Author: Yino <526319623@qq.com>
+Date:   Thu May 19 19:08:19 2022 +0800
+
+    commit geckodriver
+
+commit 25d4ee2cdade0e724cbe361cada297d7fa791325
+Author: Yino <526319623@qq.com>
+Date:   Thu May 19 19:06:43 2022 +0800
+
+    debug test
+
+commit f02d0037d5aa53dd1339e1deff55da393272b215
+Merge: 904ee80 a06cf04
+Author: liu <22924454@student.uwa.edu.au>
+Date:   Thu May 19 17:34:57 2022 +0800
+
+    Merge branch 'dev' of github.com:Changhao029/Project2 into dev
+
+commit 904ee80b198b6c49b9529df9caa7e7062548b896
+Author: liu <22924454@student.uwa.edu.au>
+Date:   Thu May 19 17:34:05 2022 +0800
+
+    readme and the git log
+
+commit a06cf047ea4dae24f3d9eacddc4ec49782f8cd2d
+Author: Yino <526319623@qq.com>
+Date:   Thu May 19 15:28:34 2022 +0800
+
+    css validation
+
 commit e27a2c10a21e888a57f331b46ab82f6350dfef02
 Author: liu <22924454@student.uwa.edu.au>
 Date:   Thu May 19 15:25:40 2022 +0800
@@ -358,7 +522,7 @@ Author: Yino <526319623@qq.com>
 Date:   Wed May 18 00:48:12 2022 +0800
 
     Merge branch 'dev' of github.com:Changhao029/Project2 into dev
-    
+
      Conflicts:
     	app/routes.py
     	app/templates/personal.html
@@ -487,7 +651,7 @@ Author: liu <22924454@student.uwa.edu.au>
 Date:   Mon May 16 22:34:20 2022 +0800
 
     Merge branch 'dev' of github.com:Changhao029/Project2 into dev
-    
+
      Conflicts:
     	app/static/js/upload.js
 
@@ -595,7 +759,7 @@ Author: Yino <526319623@qq.com>
 Date:   Mon May 9 17:00:16 2022 +0800
 
     Merge branch 'dev' of github.com:Changhao029/Project2 into dev
-    
+
      Conflicts:
     	app/templates/game.html
 
@@ -714,7 +878,7 @@ Author: Yino <526319623@qq.com>
 Date:   Thu May 5 19:58:46 2022 +0800
 
     Merge remote-tracking branch 'origin/dev' into dev
-    
+
     # Conflicts:
     #       project2.db
 
