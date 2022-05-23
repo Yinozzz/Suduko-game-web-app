@@ -70,13 +70,15 @@ function get_table_num(){
     load_function(game_url, game_info, function(){
         if (xhttp.status==200)
         {
-            stopTimer()
+
             console.log(this.responseText)
             result_json = JSON.parse(this.responseText)
             console.log(result_json)
             document.getElementById("result").innerHTML = result_json['game_result'];
 
             if (result_json['game_result'] == 'congratulations!'){
+                stopTimer()
+
                 for(var i=0; i<table.rows.length ;i++){
                     for(var j=0; j < table.rows[i].cells.length ;j++){
                         table.rows[i].cells[j].setAttribute('contenteditable', "false")
